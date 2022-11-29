@@ -1,0 +1,32 @@
+@font-face {
+    font-family: AdiNeueRegular;
+    src: url("/static/fonts/adineuePRO-Regular.ttf");
+}
+@font-face {
+    font-family: AdiNeueBold;
+    src: url("/static/fonts/adineuePRO-Bold.ttf");
+}
+
+body{
+    background-color: #141414;
+    font-family: AdiNeueRegular;
+}
+
+.title{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: AdiNeueBold;
+}
+
+button, input[type="submit"]{
+    cursor: pointer;
+}
+
+.button-positive{
+    background-color: #5ea020;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 10px 5px 10px;
+}
