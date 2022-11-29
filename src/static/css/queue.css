@@ -1,0 +1,46 @@
+.wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+}
+
+.wrapper .title{
+    position: absolute;
+    left: 50%;
+    top: -30px;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+
+.queue-box{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    border: 3px solid #5ea020;
+    border-radius: 7px;
+    padding: 20px;
+    margin: 10px;
+}
+.queue-box .queue-type{
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-family: AdiNeueBold;
+    color: white;
+    margin-bottom: 10px;
+}
+.queue-box .count{
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-family: AdiNeueRegular;
+    color: white;
+    margin-bottom: 10px;
+}
+.queue-box.cancelled{
+    border: 3px solid #a02020;
+}

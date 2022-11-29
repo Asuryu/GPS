@@ -3,4 +3,36 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+#form_login h{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#form_login input{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+}
+#form_login input[type="submit"]{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    background-color: #5ea020;
+    color: white;
+}
+#form_login input[type="submit"]:hover{
+    background-color: #4c7f16;
 }

@@ -10,6 +10,11 @@
 body{
     background-color: #141414;
     font-family: AdiNeueRegular;
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
 }
 
 .title{
