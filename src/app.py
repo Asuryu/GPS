@@ -12,7 +12,7 @@ db = sqlite3.connect("database.sqlite", check_same_thread=False)
 
 @app.route("/", methods=["GET"])
 def index():
-    return flask.render_template("index.html")
+    return flask.redirect("/login")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -22,7 +22,7 @@ def login():
     email = flask.request.form.get("email")
     if(email is None): 
         return "Email is required"
-    return flask.redirect("/")
+    return flask.redirect("/queue")
 
 @app.route("/menu", methods=["GET"])
 def menu():
@@ -34,6 +34,6 @@ def queue():
 
 @app.route('/logout')
 def logout():
-    return flask.redirect("/")
+    return flask.redirect("/login")
 
 app.run(host="0.0.0.0", port=80)
