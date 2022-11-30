@@ -8,6 +8,52 @@
     <title>CMS - Unauthorized</title>
 </head>
 <body>
-    <h>You don't have permission to access this page</h>
+    <style>
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container h{
+            font-size: 3rem;
+            color: #ff0000;
+            margin: 0;
+            font-family: AdiNeueBold;
+        }
+        .container p{
+            font-size: 0.9rem;
+            color: white;
+            margin: 0;
+        }
+        .container img{
+            width: 100px;
+            height: 100px;
+        }
+        .container button{
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff0000;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .container button:hover{
+            background-color: #ff3333;
+        }
+    </style>
+
+    <div class="container">
+        <img src="static/images/warning.png">
+        <h>Unauthorized</h>
+        <p>You are not authorized to view this page.</p>
+        <button onclick="window.location.href = '/menu';">Go back</button>
+    </div>
 </body>
 </html>
