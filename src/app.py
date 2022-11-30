@@ -79,7 +79,7 @@ def login():
 
     if flask.request.method == 'GET':
         if(flask_login.current_user.is_authenticated):
-            return flask.redirect(flask.url_for('dashboard'))
+            return flask.redirect(flask.url_for('protected'))
         else:
             return flask.render_template('login.html')
 
@@ -94,7 +94,7 @@ def login():
         user = User(user[0], user[1])
     
     flask_login.login_user(user)
-    return flask.redirect(flask.url_for('dashboard'))
+    return flask.redirect(flask.url_for('protected'))
 
 @app.route("/signin", methods=['GET', 'POST'])
 def signin():
@@ -187,10 +187,10 @@ def queue_name_patch(queue_name):
     else:
         return "Queue not found", 404
 
-@app.route('/dashboard')
+@app.route('/protected')
 @flask_login.login_required
 @admin_required
-def dashboard():
+def protected():
     return "You are logged in as " + flask_login.current_user.id
 
 @app.route('/logout')
