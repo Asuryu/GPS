@@ -16,14 +16,29 @@
         <div id="carne" class="queue-box">
             <h class="queue-type">Carne</h>
             <p class="count">0</p>
+            {% if role == "admin" %}
+                <button class="changeStateBtn">Alterar estado</button>
+                <button class="increaseBtn">Incrementar</button>
+                <button class="decreaseBtn">Decrementar</button>
+            {% endif %}
         </div>
         <div id="peixe" class="queue-box">
             <h class="queue-type">Peixe</h>
             <p class="count">0</p>
+            {% if role == "admin" %}
+                <button class="changeStateBtn">Alterar estado</button>
+                <button class="increaseBtn">Incrementar</button>
+                <button class="decreaseBtn">Decrementar</button>
+            {% endif %}
         </div>
         <div id="vegetariano" class="queue-box cancelled">
             <h class="queue-type">Vegetariano</h>
             <p class="count">0</p>
+            {% if role == "admin" %}
+                <button class="changeStateBtn">Alterar estado</button>
+                <button class="increaseBtn">Incrementar</button>
+                <button class="decreaseBtn">Decrementar</button>
+            {% endif %}
         </div>
     </div>
 </body>

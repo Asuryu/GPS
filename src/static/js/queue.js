@@ -3,6 +3,40 @@ $(document).ready(function () {
     setInterval(function () {
         updateQueueCounters();
     }, 10000)
+
+    $(".changeStateBtn").click(function(){
+        var queueName = $(this).parent().attr("id");
+        $.ajax({
+            url: '/queue/' + queueName,
+            type: 'PATCH',
+            success: function (data) {
+                updateQueueCounters();
+            }
+        });
+    });
+
+    $(".increaseBtn").click(function(){
+        var queueName = $(this).parent().attr("id");
+        $.ajax({
+            url: '/queue/' + queueName,
+            type: 'POST',
+            success: function (data) {
+                updateQueueCounters();
+            }
+        });
+    });
+
+    $(".decreaseBtn").click(function(){
+        var queueName = $(this).parent().attr("id");
+        $.ajax({
+            url: '/queue/' + queueName,
+            type: 'DELETE',
+            success: function (data) {
+                updateQueueCounters();
+            }
+        });
+    });
+
 });
 
 

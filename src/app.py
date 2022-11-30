@@ -8,6 +8,7 @@ from modules.login_helpers import check_user
 
 app = flask.Flask(__name__)
 app.secret_key = 'R1BTMjAyMiAtIFRlYW0gMjQ='
+app.debug = True
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
@@ -71,14 +72,14 @@ def unauthorized_handler():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return flask.render_template('status/404.html'), 404
+    return flask.redirect(flask.url_for('login'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 
     if flask.request.method == 'GET':
         if(flask_login.current_user.is_authenticated):
-            return flask.redirect(flask.url_for('protected'))
+            return flask.redirect(flask.url_for('dashboard'))
         else:
             return flask.render_template('login.html')
 
@@ -93,7 +94,7 @@ def login():
         user = User(user[0], user[1])
     
     flask_login.login_user(user)
-    return flask.redirect(flask.url_for('protected'))
+    return flask.redirect(flask.url_for('dashboard'))
 
 @app.route("/signin", methods=['GET', 'POST'])
 def signin():
@@ -122,7 +123,9 @@ def menu():
 @app.route('/queue')
 @flask_login.login_required
 def queue():
-    return flask.render_template('queue.html')
+    if flask_login.current_user.urole == "admin":
+        return flask.render_template('queue.html', role="admin")
+    return flask.render_template('queue.html', role="user")
 
 @app.route('/queue/<queue_name>', methods=['GET'])
 @flask_login.login_required
@@ -184,11 +187,11 @@ def queue_name_patch(queue_name):
     else:
         return "Queue not found", 404
 
-@app.route('/protected')
+@app.route('/dashboard')
 @flask_login.login_required
 @admin_required
-def protected():
-    return 'Logged in as: ' + flask_login.current_user.id
+def dashboard():
+    return "You are logged in as " + flask_login.current_user.id
 
 @app.route('/logout')
 @flask_login.login_required
