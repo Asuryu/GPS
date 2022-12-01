@@ -6,22 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/main.css">
     <link rel="stylesheet" href="static/css/queue.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="static/js/queue.js"></script>
     <title>CMS - Queue</title>
 </head>
 <body>
     <div class="wrapper">
         <h class="title">Estado das Filas</h>
-        <div class="queue-box">
+        <div id="carne" class="queue-box">
             <h class="queue-type">Carne</h>
             <p class="count">0</p>
+            {% if role == "admin" %}
+                <button class="changeStateBtn">Alterar estado</button>
+                <button class="increaseBtn">Incrementar</button>
+                <button class="decreaseBtn">Decrementar</button>
+            {% endif %}
         </div>
-        <div class="queue-box">
+        <div id="peixe" class="queue-box">
             <h class="queue-type">Peixe</h>
             <p class="count">0</p>
+            {% if role == "admin" %}
+                <button class="changeStateBtn">Alterar estado</button>
+                <button class="increaseBtn">Incrementar</button>
+                <button class="decreaseBtn">Decrementar</button>
+            {% endif %}
         </div>
-        <div class="queue-box cancelled">
+        <div id="vegetariano" class="queue-box cancelled">
             <h class="queue-type">Vegetariano</h>
             <p class="count">0</p>
+            {% if role == "admin" %}
+                <button class="changeStateBtn">Alterar estado</button>
+                <button class="increaseBtn">Incrementar</button>
+                <button class="decreaseBtn">Decrementar</button>
+            {% endif %}
         </div>
     </div>
 </body>
