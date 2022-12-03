@@ -9,15 +9,20 @@
     <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
     <title>CMS - Login</title>
 </head>
-<header>
-    <div class="logo">
-        <img src="static/images/CMSLogo.png" alt="logo">
-        <h1>CMS - Canteen Management System</h1>
-    </div>
 <body>
+    <header>
+        <div class="logo">
+            <img src="static/images/CMSLogo.png" alt="logo">
+            <h>CMS - Canteen Management System</h>
+        </div>
+    </header>
+    {% if error %}
+        <p class="error-modal">{{ error }}</p>
+    {% endif %}
     <form id="form_login" action="/login" method="POST">
         <h class="title">Iniciar Sessão</h>
         <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
         <input class="button-positive" type="submit" value="Entrar">
     </form>
 </body>
