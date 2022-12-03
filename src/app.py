@@ -4,7 +4,7 @@ import sqlite3
 import json
 from functools import wraps
 from modules.User import User
-from modules.login_helpers import check_user
+from modules.login_helpers import check_user, check_login_ipc
 
 app = flask.Flask(__name__)
 app.secret_key = 'R1BTMjAyMiAtIFRlYW0gMjQ='
@@ -84,6 +84,11 @@ def login():
             return flask.render_template('login.html')
 
     email = flask.request.form['email']
+    password = flask.request.form['password']
+
+    if check_login_ipc(email, password) == False:
+        return flask.render_template('login.html', error="Credenciais inválidas")
+
     user = check_user(email)
     if(user is None):
         db = sqlite3.connect('database.db')
@@ -95,25 +100,6 @@ def login():
     
     flask_login.login_user(user)
     return flask.redirect(flask.url_for('protected'))
-
-@app.route("/signin", methods=['GET', 'POST'])
-def signin():
-    if flask.request.method == 'GET':
-        return '''
-            <form action='signin' method='POST'>
-                <input type='text' name='email' id='email' placeholder='email'/>
-                <input type='password' name='password' id='password' placeholder='password'/>
-                <input type='submit' name='submit'/>
-            </form>
-        '''
-    email = flask.request.form['email']
-    user = check_user(email)
-    if(user is not None):
-        return "User already exists"
-    db = sqlite3.connect('database.db')
-    db.execute(f'INSERT INTO users VALUES ("{email}", "user")')
-    db.commit()
-    return "User created"
 
 @app.route('/menu')
 @flask_login.login_required
