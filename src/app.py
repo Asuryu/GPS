@@ -107,6 +107,8 @@ def login():
     flask_login.login_user(user)
     return flask.redirect(flask.url_for('protected'))
 
+
+
 @app.route('/menu', methods=['GET'])
 @flask_login.login_required
 def menu():
@@ -186,6 +188,17 @@ def queue_name_patch(queue_name):
         return queues["queues"][2], 200
     else:
         return "Queue not found", 404
+
+
+  
+@app.route('/meal', methods=['GET'])
+@flask_login.login_required
+def meal():
+    return flask.render_template('meal.html', role="user")
+
+
+
+
 
 @app.route('/protected')
 @flask_login.login_required
