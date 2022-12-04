@@ -5,6 +5,7 @@ import json
 from functools import wraps
 from modules.User import User
 from modules.login_helpers import check_user, check_login_ipc
+from modules.database_helpers import get_menu
 
 app = flask.Flask(__name__)
 app.secret_key = 'R1BTMjAyMiAtIFRlYW0gMjQ='
@@ -101,10 +102,18 @@ def login():
     flask_login.login_user(user)
     return flask.redirect(flask.url_for('protected'))
 
-@app.route('/menu')
+@app.route('/menu', methods=['GET'])
 @flask_login.login_required
 def menu():
-    return flask.render_template('menu.html')
+    # get param type
+    type = flask.request.args.get('type')
+    print(type)
+    if type is None:
+        type = "Peixe"
+    
+    menu = get_menu(type=type)
+
+    return flask.render_template('menu.html', type=type, menu=menu)
 
 @app.route('/queue')
 @flask_login.login_required
