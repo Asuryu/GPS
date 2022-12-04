@@ -1,0 +1,113 @@
+@font-face {
+    font-family: AdiNeueRegular;
+    src: url("/static/fonts/adineuePRO-Regular.ttf");
+}
+
+@font-face {
+    font-family: AdiNeueBold;
+    src: url("/static/fonts/adineuePRO-Bold.ttf");
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    background-color: #1b1b1b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+header .logo {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    height: 55px;
+    transform: translate(0%, -50%);
+    display: flex;
+    flex-direction: line;
+}
+
+header .logo h {
+    position: absolute;
+    color: white;
+    left: 70px;
+    width: 400px;
+    top: 50%;
+    transform: translate(0%, -50%);
+    padding: 0;
+    margin: 0;
+    font-family: AdiNeueRegular;
+    font-size: 17px;
+}
+
+body {
+    background-color: #141414;
+    font-family: AdiNeueRegular;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    font-family: AdiNeueRegular;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: block;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 7px;
+    font-size: 10px;
+    background-color: #5ea020;
+    color: white;
+}
+
+.button a {
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    background-color: #5ea020;
+    color: white;
+}
+
+.button:hover {
+    background-color: #4c7f16;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+.imageAndText {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.imageAndText .text {
+    margin-left: 5%;
+    margin-right: 5%;
+}

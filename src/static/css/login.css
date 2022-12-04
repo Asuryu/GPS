@@ -12,11 +12,14 @@ header {
   flex-direction: row;
   background-color: inherit;
   margin-bottom: 10%;
-  margin-top: 30px;
+  padding-top: 2%;
 }
 
 body {
   background-color: #141414;
+  background-image: url("/static/images/isec.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: AdiNeueRegular;
   padding: 0;
   margin-top: 10%;
@@ -45,112 +48,52 @@ body {
   font-size: 30px;
 }
 
-.login {
+.logo{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  flex-direction: row;
-  justify-content: right;
-  align-items: center;
-  margin-right: 20px;
+  flex-direction: line;
 }
 
-#form_login {
-  top: 10%;
-  left: 10%;
+#form_login{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 400px;
   display: flex;
   flex-direction: column;
-}
-
-#form_login h {
-  text-align: center;
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-#form_login input {
-  display: block;
-  width: 100%;
-  padding: 5px;
-  margin-bottom: 10px;
-  border: none;
+  background-color: #1ea02091;
+  padding: 2%;
   border-radius: 7px;
-  font-size: 10px;
 }
-
-#form_login input[type="submit"] {
-  display: block;
-  width: 100%;
-  padding: 5px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 7px;
-  font-size: 10px;
-  background-color: #5ea020;
-  color: white;
+#form_login h{
+ width: 100%;
+ text-align: center;
+ margin-bottom: 20px;
 }
-
-#form_login input[type="submit"]:hover {
-  background-color: #4c7f16;
+#form_login input{
+ display: block;
+ width: 100%;
+ padding: 10px;
+ margin-bottom: 10px;
+ border: none;
+ border-radius: 7px;
+ font-size: 16px;
 }
-
-* {box-sizing: border-box;}
-.mySlides {display: none;}
-img {vertical-align: middle;}
-
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
+#form_login input[type="submit"]{
+ display: block;
+ width: 100%;
+ padding: 10px;
+ margin-bottom: 10px;
+ border: none;
+ border-radius: 7px;
+ font-size: 16px;
+ background-color: #5ea020;
+ color: white;
 }
-
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .text {font-size: 11px}
+#form_login input[type="submit"]:hover{
+ background-color: #4c7f16;
 }
