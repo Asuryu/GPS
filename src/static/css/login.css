@@ -1,38 +1,99 @@
-#form_login{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    display: flex;
-    flex-direction: column;
+@font-face {
+  font-family: AdiNeueRegular;
+  src: url("/static/fonts/adineuePRO-Regular.ttf");
+}
+@font-face {
+  font-family: AdiNeueBold;
+  src: url("/static/fonts/adineuePRO-Bold.ttf");
 }
 
+header {
+  display: flex;
+  flex-direction: row;
+  background-color: inherit;
+  margin-bottom: 10%;
+  padding-top: 2%;
+}
+
+body {
+  background-color: #141414;
+  background-image: url("/static/images/isec.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: AdiNeueRegular;
+  padding: 0;
+  margin-top: 10%;
+  align-items: center;
+  text-align: center;
+}
+
+.brand {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-left: 20px;
+  background-color: #5ea020;
+  border-radius: 7px;
+  border: none;
+  padding: 5px 10px 5px 10px;
+}
+
+.brand img {
+  width: 50px;
+  height: 50px;
+}
+
+.brand h {
+  font-size: 30px;
+}
+
+.logo{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: line;
+}
+
+#form_login{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: #1ea02091;
+  padding: 2%;
+  border-radius: 7px;
+}
 #form_login h{
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
+ width: 100%;
+ text-align: center;
+ margin-bottom: 20px;
 }
 #form_login input{
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 7px;
-    font-size: 16px;
+ display: block;
+ width: 100%;
+ padding: 10px;
+ margin-bottom: 10px;
+ border: none;
+ border-radius: 7px;
+ font-size: 16px;
 }
 #form_login input[type="submit"]{
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 7px;
-    font-size: 16px;
-    background-color: #5ea020;
-    color: white;
+ display: block;
+ width: 100%;
+ padding: 10px;
+ margin-bottom: 10px;
+ border: none;
+ border-radius: 7px;
+ font-size: 16px;
+ background-color: #5ea020;
+ color: white;
 }
 #form_login input[type="submit"]:hover{
-    background-color: #4c7f16;
+ background-color: #4c7f16;
 }

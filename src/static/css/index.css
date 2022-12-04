@@ -2,12 +2,13 @@
     font-family: AdiNeueRegular;
     src: url("/static/fonts/adineuePRO-Regular.ttf");
 }
+
 @font-face {
     font-family: AdiNeueBold;
     src: url("/static/fonts/adineuePRO-Bold.ttf");
 }
 
-header{
+header {
     width: 100%;
     height: 60px;
     background-color: #1b1b1b;
@@ -22,7 +23,7 @@ header{
     z-index: 100;
 }
 
-header .logo{
+header .logo {
     position: absolute;
     top: 50%;
     left: 20px;
@@ -32,7 +33,7 @@ header .logo{
     flex-direction: line;
 }
 
-header .logo h{
+header .logo h {
     position: absolute;
     color: white;
     left: 70px;
@@ -45,46 +46,68 @@ header .logo h{
     font-size: 17px;
 }
 
-body{
+body {
     background-color: #141414;
     font-family: AdiNeueRegular;
-    margin: 0;
-    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    font-family: AdiNeueRegular;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: block;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 7px;
+    font-size: 10px;
+    background-color: #5ea020;
+    color: white;
+}
+
+.button a {
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    background-color: #5ea020;
+    color: white;
+}
+
+.button:hover {
+    background-color: #4c7f16;
+}
+
+
 * {
     box-sizing: border-box;
 }
 
-.title{
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    font-family: AdiNeueBold;
-}
-
-button, input[type="submit"]{
-    cursor: pointer;
-}
-
-.button-positive{
-    background-color: #5ea020;
-    color: white;
-    border: none;
-    border-radius: 7px;
-    padding: 5px 10px 5px 10px;
-}
-
-.error-modal{
-    position: fixed;
-    top: 80px;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    background-color: rgb(255, 49, 49);
-    z-index: 1000;
+.imageAndText {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    padding: 10px;
-    color: white;
-    border-radius: 8px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.imageAndText .text {
+    margin-left: 5%;
+    margin-right: 5%;
 }

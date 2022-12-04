@@ -6,10 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/main.css">
     <link rel="stylesheet" href="static/css/menu.css">
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="static/js/menu.js"></script>
     <title>CMS - Weekly Menu</title>
 </head>
 <body>
-    <h class="title">Menu Semanal</h>
-    <!-- Dropdown PEIXE CARNE VEGETARIANO (get) -->
+    <div class="wrap">
+        <h class="title">Menu Semanal</h>
+        <select name="type" id="type">
+            <option value="1">Peixe</option>
+            <option value="2">Carne</option>
+            <option value="3">Vegetariano</option>
+        </select>
+        <!-- Dropdown PEIXE CARNE VEGETARIANO (get) -->
+        {% if (menu) %}
+            <div class="menu-wrap" id="almoco">
+            {% for item in menu %}
+                {% if item[3] == "Almoço" %}
+                    <div id={{ item[0] }} class="menu-item">
+                        <h>{{ item[1] }}</h>
+                        <p>{{ item[2] }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if (menu) %}
+            <div class="menu-wrap" id="jantar">
+            {% for item in menu %}
+                {% if item[3] == "Jantar" %}
+                <div id={{ item[0] }} class="menu-item">
+                    <h>{{ item[1] }}</h>
+                    <p>{{ item[2] }}</p>
+                    <p>Click to set intent</p>
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>
