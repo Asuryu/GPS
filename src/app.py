@@ -74,12 +74,16 @@ def unauthorized_handler():
 def page_not_found(e):
     return flask.redirect(flask.url_for('login'))
 
+@app.route('/')
+def index():
+    return flask.render_template("index.html")
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 
     if flask.request.method == 'GET':
         if(flask_login.current_user.is_authenticated):
-            return flask.redirect(flask.url_for('protected'))
+            return flask.redirect(flask.url_for('index'))
         else:
             return flask.render_template('login.html')
 
