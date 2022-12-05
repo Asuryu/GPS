@@ -76,12 +76,6 @@ def unauthorized_handler():
 def page_not_found(e):
     return flask.redirect(flask.url_for('login'))
 
-@app.route('/')
-def index():
-    if flask_login.current_user.urole == "admin":
-        return flask.render_template('index.html', role="admin")
-    return flask.render_template('index.html', role="user")
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 
@@ -130,6 +124,14 @@ def queue():
     if flask_login.current_user.urole == "admin":
         return flask.render_template('queue.html', role="admin")
     return flask.render_template('queue.html', role="user")
+
+@app.route('/')
+@flask_login.login_required
+def index():
+    if flask_login.current_user.urole == "admin":
+        return flask.render_template('index.html', role="admin")
+    return flask.render_template('index.html', role="user")
+
 
 @app.route('/queue/<queue_name>', methods=['GET'])
 @flask_login.login_required
@@ -190,17 +192,11 @@ def queue_name_patch(queue_name):
         return queues["queues"][2], 200
     else:
         return "Queue not found", 404
-
-
   
 @app.route('/meal', methods=['GET'])
 @flask_login.login_required
 def meal():
     return flask.render_template('meal.html', role="user")
-
-
-
-
 
 @app.route('/protected')
 @flask_login.login_required
