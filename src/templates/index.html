@@ -16,6 +16,7 @@
         </div>
     </header>
     <container class="buttons">
+        
         <button class="button">
             <a href="/meal">Meal Intention</a>
         </button>
@@ -25,12 +26,28 @@
         <button class="button">
             <a href="/menu">Week Menu</a>
         </button>
+        {% if role == "admin" %}
+        <button class="button">
+            <a href="/menu">Admin manager</a>
+        </button>
+        <button class="button">
+            <a href="/menu">Menu Update</a>
+        </button>
+        <button class="button">
+            <a href="/menu">Statistics</a>
+        </button>
+        {% endif %}
     </container>
     <container class="imageAndText">
        <img style="border-radius: 8px;" src="static/images/food.jpeg" alt="food">
          <div class="text">
-              <h1>Food</h1>
-              <p>Food is any substance consumed to provide nutritional support for the body. It is usually of plant or animal origin, and contains essential nutrients, such as carbohydrates, fats, proteins, vitamins, or minerals. The substance is ingested by an organism and assimilated by the organism's cells to provide energy, maintain life, or stimulate growth.</p>
+              <h1>Cantina</h1>
+              <p>O ISEC dispõe de uma cantina onde é servido o prato social, em que os preços praticados são de 2.65€ para os alunos e 4.10€ para os funcionários.
+
+                De forma a assegurar aos estudantes a possibilidade de terem refeições qualitativamente equilibradas e a preços acessíveis, os SASIPC dispõem atualmente de 5 cantinas (uma explorada pelos próprios serviços e quatro concessionadas) apresentando no seu total uma capacidade de 872 lugares sentados.
+                Para além das cantinas, todas as Escolas/Institutos possuem dentro das suas instalações um bar, cujo horário de funcionamento acompanha, em regra, o período das atividades escolares
+                
+                Para mais informações aceder <a href="https://www.ipc.pt/ipc/acao-social/apresentacao-2/">aqui</a>.</p>
         </div>
     </container>
 </body>

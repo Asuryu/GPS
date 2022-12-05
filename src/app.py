@@ -78,7 +78,9 @@ def page_not_found(e):
 
 @app.route('/')
 def index():
-    return flask.render_template("index.html")
+    if flask_login.current_user.urole == "admin":
+        return flask.render_template('index.html', role="admin")
+    return flask.render_template('index.html', role="user")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
