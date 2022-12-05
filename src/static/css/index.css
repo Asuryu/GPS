@@ -46,6 +46,41 @@ header .logo h {
     font-size: 17px;
 }
 
+.logout{
+    position: absolute;
+    top: 50%;
+    right: 70px;
+    transform: translate(0%, -50%);
+    display: flex;
+    flex-direction: line;
+    font-family: AdiNeueRegular;
+    text-decoration: none;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 5px;
+    background-color: #5ea020;
+    color: white;
+}
+
+.logout a{
+    text-decoration: none;
+    display: flex;
+    flex-direction: line;
+    font-family: AdiNeueRegular;
+    text-decoration: none;
+    padding: 5px;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    background-color: #5ea020;
+    color: white;
+}
+
+.logout:hover {
+    background-color: #4c7f16;
+}
+
 body {
     background-color: #141414;
     font-family: AdiNeueRegular;
@@ -80,7 +115,7 @@ body {
 .button a {
     text-decoration: none;
     display: block;
-    padding: 10px;
+    padding: 5px;
     border: none;
     border-radius: 7px;
     font-size: 16px;
