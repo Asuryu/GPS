@@ -17,14 +17,20 @@ header {
 
 body {
   background-color: #141414;
-  background-image: url("/static/images/isec.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
   font-family: AdiNeueRegular;
   padding: 0;
   margin-top: 10%;
   align-items: center;
   text-align: center;
+  overflow-y: hidden;
+}
+
+.background_image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.1;
 }
 
 .brand {
