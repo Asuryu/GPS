@@ -125,6 +125,24 @@ def queue():
         return flask.render_template('queue.html', role="admin")
     return flask.render_template('queue.html', role="user")
 
+@app.route('/admin_manager')
+@flask_login.login_required
+def admin_manager():
+    if flask_login.current_user.urole == "admin":
+        return flask.render_template('adminManager.html', role="admin")
+
+@app.route('/menu_update')
+@flask_login.login_required
+def menu_update():
+    if flask_login.current_user.urole == "admin":
+        return flask.render_template('menuUpdate.html', role="admin")
+
+@app.route('/statistics')
+@flask_login.login_required
+def statistics():
+    if flask_login.current_user.urole == "admin":
+        return flask.render_template('statistics.html', role="admin")
+
 @app.route('/')
 @flask_login.login_required
 def index():
