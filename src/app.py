@@ -112,7 +112,8 @@ def menu():
     type = flask.request.args.get('type')
     print(type)
     if type is None:
-        return flask.render_template('menu.html', menu=get_menu(type="Peixe"), type="Peixe")
+        menu = get_menu(type="Peixe")
+        return flask.render_template('menu.html', type="Peixe", menu=menu)
     
     menu = get_menu(type=type)
     return {"menu": menu, "type": type}
@@ -189,13 +190,21 @@ def queue_name_post(queue_name):
 @admin_required
 def queue_name_delete(queue_name):
     if(queue_name == "peixe"):
-        queues["queues"][0]["counter"] -= 1
+        if (queues["queues"][0]["counter"] - 1 < 0):
+            queues["queues"][0]["counter"] = 0
+        else:  queues["queues"][0]["counter"] -= 1
         return queues["queues"][0], 200
+
     elif(queue_name == "carne"):
-        queues["queues"][1]["counter"] -= 1
+        if (queues["queues"][1]["counter"] - 1 < 0):
+            queues["queues"][1]["counter"] = 0
+        else:  queues["queues"][1]["counter"] -= 1
         return queues["queues"][1], 200
+
     elif(queue_name == "vegetariano"):
-        queues["queues"][2]["counter"] -= 1
+        if (queues["queues"][2]["counter"] - 1 < 0):
+            queues["queues"][2]["counter"] = 0
+        else:  queues["queues"][2]["counter"] -= 1
         return queues["queues"][2], 200
     else:
         return "Queue not found", 404
@@ -219,9 +228,7 @@ def queue_name_patch(queue_name):
 @app.route('/meal', methods=['GET'])
 @flask_login.login_required
 def meal():
-    if flask_login.current_user.urole == "admin":
-        return flask.render_template('meal.html', role="admin")
-    return flask.render_template('meal.html', role="user")
+    return flask.render_template('meal.html')
    
 
 @app.route('/protected')
