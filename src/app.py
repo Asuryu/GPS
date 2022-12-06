@@ -196,7 +196,10 @@ def queue_name_patch(queue_name):
 @app.route('/meal', methods=['GET'])
 @flask_login.login_required
 def meal():
+    if flask_login.current_user.urole == "admin":
+        return flask.render_template('meal.html', role="admin")
     return flask.render_template('meal.html', role="user")
+   
 
 @app.route('/protected')
 @flask_login.login_required
