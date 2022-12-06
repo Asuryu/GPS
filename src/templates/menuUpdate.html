@@ -14,8 +14,16 @@
 <body>
     <div class="wrap">
         <h class="title">Update Menu</h>
-        <table>
-            <caption><em>Monday</em></caption>
+        <table class="content-table">
+            <caption>
+                <select name="week_days" id="days">
+                    <option>Segunda-Feira</option>
+                    <option>Terça-Feira</option>
+                    <option>Quarta-Feira</option>
+                    <option>Quinta-Feira</option>
+                    <option>Sexta-Feira</option>
+                </select>
+            </caption>
             <tr id="first_row">
                 <th scope="col"><strong>Tipo</strong></th>
                 <th scope="col"><strong>Carne</strong></th>
@@ -23,26 +31,28 @@
                 <th scope="col"><strong>Vegetariano</strong></th>
             </tr>
             <tr>
-                <td>Sopa</td>
-                <td colspan="3"><input type="text" name="soup" value="Brócolos" required/></td>
+                <td class="lcol">Sopa</td>
+                <td class="rcol" colspan="3"><input type="text" name="soup" required/></td>
             </tr>
             <tr>
-                <td>Prato Principal</td>
-                <td>Alheira assada.<br>Acompanha com arroz branco e salada mista*</td>
-                <td>Peixe Carapau frito.<br>Acompanha com arroz de tomate e salada mista*</td>
-                <td>Rancho vegetariano (massa, grão-de-bico, chouriço vegetariano).<br>Acompanha com salada mista*</td>
+                <td class="lcol">Prato Principal</td>
+                <td class="rcol"><input type="text" name="meat" required/></td>
+                <td class="rcol"><input type="text" name="fish" required/></td>
+                <td class="rcol"><input type="text" name="vegi" required/></td>
             </tr>
             <tr>
-                <td>Sobremesa</td>
-                <td colspan="3">1 peça de fruta ou doce</td>
+                <td class="lcol">Sobremesa</td>
+                <td class="rcol" colspan="3"><input type="text" name="dessert" required/></td>
             </tr>
         </table>
-        <button>
-            <a href="#save">Save</a>
-        </button>
-        <button>
-            <a href="#load">Load File</a>
-        </button>
+        <div class="btns">
+            <button>
+                <a href="#save">Save</a>
+            </button>
+            <button>
+                <a href="#load">Load File</a>
+            </button>
+        </div>
     </div>
 </body>
 </html>
