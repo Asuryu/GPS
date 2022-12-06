@@ -39,7 +39,7 @@ header .logo h {
     left: 70px;
     width: 400px;
     top: 50%;
-    transform: translate(0%, -50%);
+    transform: translate(0%, calc(-50% + 2px));
     padding: 0;
     margin: 0;
     font-family: AdiNeueRegular;
@@ -47,6 +47,7 @@ header .logo h {
 }
 
 body {
+    color: white;
     background-color: #141414;
     font-family: AdiNeueRegular;
     margin-left: auto;
@@ -55,43 +56,6 @@ body {
     flex-direction: column;
     align-items: center;
 }
-
-.buttons{
-    display: flex;
-    flex-direction: row;
-}
-
-.button {
-    font-family: AdiNeueRegular;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    margin-left: 50px;
-    margin-right: 50px;
-    display: block;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 7px;
-    font-size: 10px;
-    background-color: #5ea020;
-    color: white;
-}
-
-.button a {
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    border: none;
-    border-radius: 7px;
-    font-size: 16px;
-    background-color: #5ea020;
-    color: white;
-}
-
-.button:hover {
-    background-color: #4c7f16;
-}
-
 
 * {
     box-sizing: border-box;
@@ -110,4 +74,8 @@ body {
 .imageAndText .text {
     margin-left: 5%;
     margin-right: 5%;
+}
+
+.text p a{
+    color: #4c7f16;
 }

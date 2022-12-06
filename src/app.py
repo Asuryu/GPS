@@ -101,7 +101,7 @@ def login():
         user = User(user[0], user[1])
     
     flask_login.login_user(user)
-    return flask.redirect(flask.url_for('protected'))
+    return flask.redirect(flask.url_for('index'))
 
 
 
@@ -124,6 +124,27 @@ def queue():
     if flask_login.current_user.urole == "admin":
         return flask.render_template('queue.html', role="admin")
     return flask.render_template('queue.html', role="user")
+
+@app.route('/admin_manager')
+@flask_login.login_required
+@admin_required
+def admin_manager():
+    if flask_login.current_user.urole == "admin":
+        return flask.render_template('adminManager.html', role="admin")
+
+@app.route('/menu_update')
+@flask_login.login_required
+@admin_required
+def menu_update():
+    if flask_login.current_user.urole == "admin":
+        return flask.render_template('menuUpdate.html', role="admin")
+
+@app.route('/statistics')
+@flask_login.login_required
+@admin_required
+def statistics():
+    if flask_login.current_user.urole == "admin":
+        return flask.render_template('statistics.html', role="admin")
 
 @app.route('/')
 @flask_login.login_required
@@ -150,6 +171,7 @@ def queue_name(queue_name):
 
 @app.route('/queue/<queue_name>', methods=['POST'])
 @flask_login.login_required
+@admin_required
 def queue_name_post(queue_name):
     if(queue_name == "peixe"):
         queues["queues"][0]["counter"] += 1
@@ -165,6 +187,7 @@ def queue_name_post(queue_name):
 
 @app.route('/queue/<queue_name>', methods=['DELETE'])
 @flask_login.login_required
+@admin_required
 def queue_name_delete(queue_name):
     if(queue_name == "peixe"):
         queues["queues"][0]["counter"] -= 1
@@ -180,6 +203,7 @@ def queue_name_delete(queue_name):
 
 @app.route('/queue/<queue_name>', methods=['PATCH'])
 @flask_login.login_required
+@admin_required
 def queue_name_patch(queue_name):
     if(queue_name == "peixe"):
         queues["queues"][0]["enabled"] = not queues["queues"][0]["enabled"]

@@ -16,6 +16,19 @@
     text-align: center;
 }
 
+.wrapper .title i{
+    transition: 0.2s;
+    font-size: 30px;
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.wrapper .title i:hover{
+    transition: 0.1s;
+    color: #5ea020;
+    transform: rotate(50deg);
+}
+
 .queue-box{
     display: flex;
     flex-direction: column;
@@ -43,4 +56,22 @@
 }
 .queue-box.cancelled{
     border: 3px solid #a02020;
+}
+.queue-box button{
+    background-color: #468609;
+    margin-bottom: 5px;
+}
+.queue-box button:hover{
+    background-color: #75aa43;
+    color: white;
+    transition: 0.2s;
+}
+
+.queueBtn{
+    position: relative;
+    border-radius: 3px;
+    background-color: #5ea020;
+    border: none;
+    color: #FFFFFF;
+    padding: 10px;
 }
