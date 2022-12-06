@@ -10,6 +10,7 @@ $(document).ready(function () {
             type: "GET",
             success: function (data) {
                 $(".menu-wrap").empty();
+                console.log(data);
                 for (var i = 0; i < data.menu.length; i++) {
                     var item = data.menu[i];
                     if(item[3] == "Almoço"){

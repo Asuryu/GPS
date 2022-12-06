@@ -86,3 +86,25 @@ body {
 #form_login input[type="submit"]:hover{
  background-color: #4c7f16;
 }
+
+header .logo_{
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  height: 55px;
+  transform: translate(0%, -50%);
+  display: flex;
+  flex-direction: line;
+}
+
+header .logo_ h{
+  position: absolute;
+  color: white;
+  width: 400px;
+  top: 50%;
+  transform: translate(0%, -50%);
+  padding: 0;
+  margin: 0;
+  font-family: AdiNeueRegular;
+  font-size: 17px;
+}

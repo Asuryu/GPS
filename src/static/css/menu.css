@@ -43,7 +43,7 @@
 
 .menu-item{
     transition: 0.2s;
-    background-color: rgb(55, 55, 55);
+    background-color: rgb(31, 31, 31);
     border-radius: 8px;
     width: 200px;
     height: 140px;
@@ -56,3 +56,25 @@
     background-color: rgb(75, 75, 75);
 }
 
+.menu-item h{
+    position: relative;
+    color: #a7d319;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 30px);
+    font-family: AdiNeueBold;
+    font-size: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    line-break: auto;
+}
+
+.menu-item p{
+    position: relative;
+    color: #fff;
+    font-family: AdiNeueRegular;
+    font-size: 16px;
+    margin: 0;
+    padding: 10px;
+    padding-top: 20px;
+}

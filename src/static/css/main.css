@@ -37,6 +37,7 @@ header .logo h{
     color: white;
     width: 400px;
     top: 50%;
+    left: 70px;
     transform: translate(0%, -50%);
     padding: 0;
     margin: 0;

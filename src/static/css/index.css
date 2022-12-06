@@ -33,19 +33,6 @@ header .logo {
     flex-direction: line;
 }
 
-header .logo h {
-    position: absolute;
-    color: white;
-    left: 70px;
-    width: 400px;
-    top: 50%;
-    transform: translate(0%, calc(-50% + 2px));
-    padding: 0;
-    margin: 0;
-    font-family: AdiNeueRegular;
-    font-size: 17px;
-}
-
 body {
     color: white;
     background-color: #141414;
