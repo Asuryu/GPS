@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/menuUpdate.css">
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="static/js/menu.js"></script>
+    <title>CMS - Update Menu</title>
+</head>
+<body>
+    <div class="wrap">
+        <h class="title">Update Menu</h>
+        <table>
+            <caption><em>Monday</em></caption>
+            <tr id="first_row">
+                <th scope="col"><strong>Tipo</strong></th>
+                <th scope="col"><strong>Carne</strong></th>
+                <th scope="col"><strong>Peixe</strong></th>
+                <th scope="col"><strong>Vegetariano</strong></th>
+            </tr>
+            <tr>
+                <td>Sopa</td>
+                <td colspan="3"><input type="text" name="soup" value="Brócolos" required/></td>
+            </tr>
+            <tr>
+                <td>Prato Principal</td>
+                <td>Alheira assada.<br>Acompanha com arroz branco e salada mista*</td>
+                <td>Peixe Carapau frito.<br>Acompanha com arroz de tomate e salada mista*</td>
+                <td>Rancho vegetariano (massa, grão-de-bico, chouriço vegetariano).<br>Acompanha com salada mista*</td>
+            </tr>
+            <tr>
+                <td>Sobremesa</td>
+                <td colspan="3">1 peça de fruta ou doce</td>
+            </tr>
+        </table>
+        <button>
+            <a href="#save">Save</a>
+        </button>
+        <button>
+            <a href="#load">Load File</a>
+        </button>
+    </div>
+</body>
+</html>
