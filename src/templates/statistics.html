@@ -1,80 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/main.css">
-    <link rel="stylesheet" href="static/css/index.css">
-    <link rel="stylesheet" href="static/css/Statistics.css">
-    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="static/js/menu.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var dataMealChoice = google.visualization.arrayToDataTable([
-          ['Tipo', 'Nº de pessoas'],
-          ['Carne',     150],
-          ['Peixe',      30],
-          ['Vegetariano',  5]
-        ]);
-
-        var options = {
-          title: 'Tipos de Refeição escolhidas'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('tipos'));
-        chart.draw(dataMealChoice, options);
-      }
-    </script>
-    <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawVisualization);
-  
-        function drawVisualization() {
-          // Some raw data (not necessarily accurate)
-          var data = google.visualization.arrayToDataTable([
-            ['Hora do Dia', 'Carne', 'Peixe/Vegetariano'],
-            ['12h00',        1     ,    1],
-            ['12h30',        3     ,    1],
-            ['13h00',        5     ,    2],
-            ['13h30',        10     ,   1],
-            ['14h00',        2     ,    1]
-          ]);
-  
-          var options = {
-            title : 'Média de tempo na fila de espera por cada fila',
-            vAxis: {title: 'Minutos'},
-            hAxis: {title: 'Horas de Funcionamento'},
-            seriesType: 'bars',
-            series: {2: {type: 'line'}}
-          };
-  
-          var chart = new google.visualization.ComboChart(document.getElementById('queue'));
-          chart.draw(data, options);
-        }
-      </script>
-    <title>CMS - Statistics</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="static/css/main.css">
+	<link rel="stylesheet" href="static/css/index.css">
+	<link rel="stylesheet" href="static/css/statistics.css">
+	<link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="static/js/statistics.js"></script>
+	<title>CMS - Statistics</title>
 </head>
+
 <body>
-    <header>
-        <div class="logo">
-            <img src="static/images/CMSLogo.png" alt="logo">
-            <h>CMS - Canteen Management System</h>
-        </div>
-        <button class="logout">
-            <a href="/logout">Logout</a>
-        </button>
-    </header>
-    <div class="wrap">
-        <h class="title">Statistics</h>
-        <div id="tipos" style="width: 600px; height: 300px;"></div>
-        <div id="queue" style="width: 600px; height: 300px;"></div>
-    </div>
+	<header>
+		<div class="logo">
+			<img src="static/images/CMSLogo.png" alt="logo">
+			<h>CMS - Canteen Management System</h>
+		</div>
+		<button class="logout">
+			<a href="/logout">Logout</a>
+		</button>
+	</header>
+	<div class="wrap">
+		<h class="title">Statistics</h>
+		<div id="tipos" style="width: 600px; height: 300px;"></div>
+		<div id="queue" style="width: 600px; height: 300px;"></div>
+	</div>
 </body>
+
 </html>

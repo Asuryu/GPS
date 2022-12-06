@@ -13,7 +13,6 @@ def check_user(email):
     cursor.execute(f'SELECT * FROM users WHERE email="{email}"')
     user = cursor.fetchone()
     # check if user is admin
-    print(user)
     return user
 
 

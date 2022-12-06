@@ -74,6 +74,13 @@ button, input[type="submit"]{
     border-radius: 7px;
     padding: 5px 10px 5px 10px;
 }
+.button-negative{
+    background-color: #a02020;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 10px 5px 10px;
+}
 
 .error-modal{
     position: fixed;

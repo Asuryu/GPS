@@ -37,6 +37,10 @@ $(document).ready(function () {
         });
     });
 
+    $("#refreshBtn").click(function(){
+        updateQueueCounters();
+    });
+
 });
 
 
