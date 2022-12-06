@@ -112,11 +112,10 @@ def menu():
     type = flask.request.args.get('type')
     print(type)
     if type is None:
-        type = "Peixe"
+        return flask.render_template('menu.html', menu=get_menu(type="Peixe"), type="Peixe")
     
     menu = get_menu(type=type)
-
-    return flask.render_template('menu.html', type=type, menu=menu)
+    return {"menu": menu, "type": type}
 
 @app.route('/queue')
 @flask_login.login_required
