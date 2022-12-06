@@ -35,7 +35,6 @@ header .logo{
 header .logo h{
     position: absolute;
     color: white;
-    left: 70px;
     width: 400px;
     top: 50%;
     transform: translate(0%, -50%);
@@ -95,4 +94,48 @@ button, input[type="submit"]{
     padding: 10px;
     color: white;
     border-radius: 8px;
+}
+
+.links {
+    position: relative;
+    display: flex;
+    top: 2px;
+    left: 430px;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.links a{
+    text-decoration: none;
+    margin-left: 28px;
+    color: white;
+    font-size: 15px;
+    font-family: AdiNeueRegular;
+}
+.links a:hover{
+    color: #5ea020;
+}
+
+.logout{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translate(0%, -50%);
+    display: flex;
+    flex-direction: line;
+    font-family: AdiNeueRegular;
+    text-decoration: none;
+    border: none;
+    color: white;
+}
+
+.logout a{
+    text-decoration: none;
+    display: block;
+    color: white;
+}
+
+.logout:hover {
+    background-color: #7f1616;
 }

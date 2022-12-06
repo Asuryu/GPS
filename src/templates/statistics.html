@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="static/css/index.css">
 	<link rel="stylesheet" href="static/css/statistics.css">
 	<link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+	<script src="https://kit.fontawesome.com/a1c321da30.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="static/js/statistics.js"></script>
@@ -17,14 +18,24 @@
 
 <body>
 	<header>
-		<div class="logo">
-			<img src="static/images/CMSLogo.png" alt="logo">
-			<h>CMS - Canteen Management System</h>
-		</div>
-		<button class="logout">
-			<a href="/logout">Logout</a>
-		</button>
-	</header>
+        <div class="logo">
+            <img src="static/images/CMSLogo.png" alt="logo">
+            <h>CMS - Canteen Management System</h>
+        </div>
+        <div class="links">
+            <a href="/meal">Meal Intention</a>
+            <a href="/queue">Queue Info</a>
+            <a href="/menu">Week Menu</a>
+            {% if role == "admin" %}
+            <a href="/admin_manager">Admin manager</a>
+            <a href="/menu_update">Menu Update</a>
+            <a href="/statistics">Statistics</a>
+            {% endif %}
+        </div>
+        <button class="button-negative logout">
+            <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </button>
+    </header>
 	<div class="wrap">
 		<h class="title">Statistics</h>
 		<div id="tipos" style="width: 600px; height: 300px;"></div>
