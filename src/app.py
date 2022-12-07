@@ -4,8 +4,8 @@ import sqlite3
 import json
 from functools import wraps
 from modules.User import User
-from modules.login_helpers import check_user, check_login_ipc
-from modules.database_helpers import get_menu
+from modules.login_helpers import *
+from modules.database_helpers import *
 
 
 app = flask.Flask(__name__)
@@ -153,6 +153,39 @@ def index():
         return flask.render_template('index.html', role="admin")
     return flask.render_template('index.html', role="user")
 
+@app.route('/intent', methods=['GET'])
+@flask_login.login_required
+def get_intents():
+    ret = get_user_intents(flask_login.current_user.id)
+    intents = []
+    for intent in ret:
+        intents.append(intent[2])
+    return {"intents": intents}
+
+@app.route('/intent', methods=['POST'])
+@flask_login.login_required
+def intent():
+    meal_id = flask.request.form['meal_id']
+    print(meal_id)
+    ret = register_meal_intention(flask_login.current_user.id, meal_id)
+    if ret == True:
+        return "Meal intent saved!", 200
+    else:
+        return "Meal intent already registered", 400
+
+@app.route('/intent', methods=['DELETE'])
+@flask_login.login_required
+def delete_intent():
+    meal_id = flask.request.form['meal_id']
+    print(meal_id)
+    ret = delete_meal_intention(flask_login.current_user.id, meal_id)
+    if ret == True:
+        return "Meal intent deleted!", 200
+    else:
+        return "Meal intent not found", 400
+
+#TODO: when the admin changes the menu, all meal intentions with 
+# the meal id of the meal that was removed should be deleted
 
 @app.route('/queue/<queue_name>', methods=['GET'])
 @flask_login.login_required
@@ -229,13 +262,6 @@ def queue_name_patch(queue_name):
 @flask_login.login_required
 def meal():
     return flask.render_template('meal.html')
-   
-
-@app.route('/protected')
-@flask_login.login_required
-@admin_required
-def protected():
-    return "You are logged in as " + flask_login.current_user.id
 
 @app.route('/logout')
 @flask_login.login_required
