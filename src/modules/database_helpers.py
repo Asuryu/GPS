@@ -13,5 +13,32 @@ def get_menu(period="all", type="all"):
         cursor.execute("SELECT * FROM MENU WHERE period = ? AND type = ?", (period, type))
     meals = cursor.fetchall()
     db.close()
-    print(meals)
     return meals
+
+def get_user_intents(email):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM INTENTIONS WHERE user_id = ?", (email,))
+    intentions = cursor.fetchall()
+    db.close()
+    return intentions
+
+def register_meal_intention(email, meal_id):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM INTENTIONS WHERE user_id = ? AND menu_id = ?", (email, meal_id))
+    if cursor.fetchone() is not None:
+        db.close()
+        return False
+    cursor.execute("INSERT INTO INTENTIONS (user_id, menu_id) VALUES (?, ?)", (email, meal_id))
+    db.commit()
+    db.close()
+    return True
+
+def delete_meal_intention(email, meal_id):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("DELETE FROM INTENTIONS WHERE user_id = ? AND menu_id = ?", (email, meal_id))
+    db.commit()
+    db.close()
+    return True
