@@ -23,12 +23,10 @@
             <h>CMS - Canteen Management System</h>
         </div>
         <div class="links">
-            <a href="/meal">Meal Intention</a>
+            <a href="/menu">Weekly Menu</a>
             <a href="/queue">Queue Info</a>
-            <a href="/menu">Week Menu</a>
             {% if role == "admin" %}
-            <a href="/admin_manager">Admin manager</a>
-            <a href="/menu_update">Menu Update</a>
+            <a href="/admin_manager">Admin Manager</a>
             <a href="/statistics">Statistics</a>
             {% endif %}
         </div>
@@ -36,8 +34,8 @@
             <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
         </button>
     </header>
+    <h class="title">Statistics</h>
 	<div class="wrap">
-		<h class="title">Statistics</h>
 		<div id="tipos" style="width: 600px; height: 300px;"></div>
 		<div id="queue" style="width: 600px; height: 300px;"></div>
 	</div>

@@ -81,6 +81,14 @@ button, input[type="submit"]{
     border-radius: 7px;
     padding: 5px 10px 5px 10px;
 }
+.button-positive:hover{
+    transition: 0.1s;
+    background-color: #7ebf3a;
+}
+.button-negative:hover{
+    transition: 0.1s;
+    background-color: #c23f3f;
+}
 
 .error-modal{
     position: fixed;
