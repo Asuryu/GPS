@@ -42,3 +42,22 @@ def delete_meal_intention(email, meal_id):
     db.commit()
     db.close()
     return True
+
+def get_user_by_email(email):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM USERS WHERE email = ?", (email,))
+    user = cursor.fetchone()
+    if user is None:
+        db.close()
+        return None
+    db.close()
+    return user
+
+def update_user_role(email, role):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    cursor.execute("UPDATE USERS SET role = ? WHERE email = ?", (role, email))
+    db.commit()
+    db.close()
+    return True
