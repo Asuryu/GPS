@@ -113,7 +113,7 @@ def menu():
     print(type)
     if type is None:
         menu = get_menu(type="Peixe")
-        return flask.render_template('menu.html', type="Peixe", menu=menu)
+        return flask.render_template('menu.html', type="Peixe", menu=menu, role=flask_login.current_user.urole)
     
     menu = get_menu(type=type)
     return {"menu": menu, "type": type}
@@ -121,37 +121,30 @@ def menu():
 @app.route('/queue')
 @flask_login.login_required
 def queue():
-    if flask_login.current_user.urole == "admin":
-        return flask.render_template('queue.html', role="admin")
-    return flask.render_template('queue.html', role="user")
+    return flask.render_template('queue.html', role=flask_login.current_user.urole)
 
 @app.route('/admin_manager')
 @flask_login.login_required
 @admin_required
 def admin_manager():
-    if flask_login.current_user.urole == "admin":
-        return flask.render_template('adminManager.html', role="admin")
+    return flask.render_template('adminManager.html', role="admin")
 
 @app.route('/menu_update')
 @flask_login.login_required
 @admin_required
 def menu_update():
-    if flask_login.current_user.urole == "admin":
-        return flask.render_template('menuUpdate.html', role="admin")
+    return flask.render_template('menuUpdate.html', role="admin")
 
 @app.route('/statistics')
 @flask_login.login_required
 @admin_required
 def statistics():
-    if flask_login.current_user.urole == "admin":
-        return flask.render_template('statistics.html', role="admin")
+    return flask.render_template('statistics.html', role="admin")
 
 @app.route('/')
 @flask_login.login_required
 def index():
-    if flask_login.current_user.urole == "admin":
-        return flask.render_template('index.html', role="admin")
-    return flask.render_template('index.html', role="user")
+    return flask.render_template('index.html', role=flask_login.current_user.urole)
 
 @app.route('/intent', methods=['GET'])
 @flask_login.login_required
@@ -257,11 +250,41 @@ def queue_name_patch(queue_name):
         return queues["queues"][2], 200
     else:
         return "Queue not found", 404
-  
+
+@app.route('/users/get_user_by_id/<user_id>', methods=['GET'])
+@flask_login.login_required
+@admin_required
+def get_user(user_id):
+    user = get_user_by_email(user_id)
+    if user is None:
+        return "User not found", 404
+    else:
+        return {"email": user[0], "role": user[1].capitalize()}
+
+@app.route('/users/update_user', methods=['POST'])
+@flask_login.login_required
+@admin_required
+def post_user():
+    user_id = flask.request.form['user_id']
+    new_role = flask.request.form['new_role']
+    
+    # check if user exists
+    user = get_user_by_email(user_id)
+    if user is None:
+        return "User not found", 404
+    
+    # update user role
+    if update_user_role(user_id, new_role):
+        if flask_login.current_user.id == user_id:
+            flask_login.logout_user()
+            return "User role updated. Please login again", 201
+        return "User role updated", 200
+
+
 @app.route('/meal', methods=['GET'])
 @flask_login.login_required
 def meal():
-    return flask.render_template('meal.html')
+    return flask.render_template('meal.html', role=flask_login.current_user.urole)
 
 @app.route('/logout')
 @flask_login.login_required
