@@ -2,17 +2,24 @@ import sqlite3
 from bs4 import BeautifulSoup
 import requests
 from requests.adapters import HTTPAdapter
+from modules.password_helpers import * 
 
 izek_adapter = HTTPAdapter(max_retries=10)
 s = requests.Session()
 s.mount("https://inforestudante.ipc.pt", izek_adapter)
 
-def check_user(email):
+def check_user(email, hashed_password=None):
     db = sqlite3.connect('database.db')
     cursor = db.cursor()
     cursor.execute(f'SELECT * FROM users WHERE email="{email}"')
     user = cursor.fetchone()
-    # check if user is admin
+    if user is None:
+        db.close()
+        return None
+    if hashed_password is not None:
+        if not check_password(hashed_password, user[2]):
+            db.close()
+            return -1
     return user
 
 
