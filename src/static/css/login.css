@@ -54,7 +54,7 @@ body {
   width: 400px;
   display: flex;
   flex-direction: column;
-  background-color: #48f8031a;
+  background-color: #00000050;
   padding: 2%;
   border-radius: 7px;
 }
