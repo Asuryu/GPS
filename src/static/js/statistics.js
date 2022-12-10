@@ -18,7 +18,7 @@ $(document).ready(function () {
                 data: {
                     labels: ['Peixe', 'Carne', 'Vegetariano'],
                     datasets: [{
-                        label: 'Meal Types',
+                        label: '',
                         data: [mealTypesData.Peixe, mealTypesData.Carne, mealTypesData.Vegetariano],
                         backgroundColor: [ '#ffcf32', '#ff6c32' , '#32ff6c'],
                     }]
@@ -27,6 +27,11 @@ $(document).ready(function () {
                     scales: {
                         y: {
                             beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                           display: false
                         }
                     }
                 }
