@@ -4,13 +4,14 @@ $(document).ready(function () {
     const mealTypes = document.getElementById("mealTypes")
     const mealPeriods = document.getElementById("mealPeriods")
 
+    // Making a GET request to the server to get the statistics
     $.ajax({
         url: '/statistics/all',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            var mealTypesData = data.meal_types
-            var mealPeriodsData = data.meal_periods
+            var mealTypesData = data.meal_types // Statistics for meal types
+            var mealPeriodsData = data.meal_periods // Statistics for meal periods
 
             new Chart(mealTypes, {
                 type: 'bar',
