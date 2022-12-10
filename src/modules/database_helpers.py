@@ -61,3 +61,13 @@ def update_user_role(email, role):
     db.commit()
     db.close()
     return True
+
+def update_menu_item(id, title, description):
+    db = sqlite3.connect('database.db')
+    cursor = db.cursor()
+    ret = cursor.execute("UPDATE MENU SET title = ?, description = ? WHERE id = ?", (title, description, id))
+    if ret.rowcount == 0: return False
+    cursor.execute("DELETE FROM INTENTIONS WHERE menu_id = ?", (id,))
+    db.commit()
+    db.close()
+    return True

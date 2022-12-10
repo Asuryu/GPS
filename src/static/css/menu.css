@@ -102,3 +102,13 @@
     border: 3px solid #a7d319;
     margin-right: 10px;
 }
+
+
+.confirmBtnSwal{
+    background-color: rgb(151, 255, 66);
+    color: white;
+}
+.confirmBtnSwal:hover{
+    background-color: rgb(115, 192, 52);
+    color: white;
+}

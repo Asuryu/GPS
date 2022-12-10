@@ -6,6 +6,7 @@ from functools import wraps
 from modules.User import User
 from modules.login_helpers import *
 from modules.database_helpers import *
+from modules.password_helpers import *
 
 
 app = flask.Flask(__name__)
@@ -16,12 +17,13 @@ login_manager.init_app(app)
 
 db = sqlite3.connect('database.db')
 
+print(hash_password("admin"))
 
 queues = {
     "queues": [
         {
             "name": "Peixe",
-            "counter": 1,
+            "counter": 0,
             "enabled": True
         },
         {
@@ -91,10 +93,13 @@ def login():
     if check_login_ipc(email, password) == False:
         return flask.render_template('login.html', error="Credenciais inválidas")
 
-    user = check_user(email)
+    user = check_user(email, password)
+    if user == -1:
+        return flask.render_template('login.html', error="Credenciais inválidas")
     if(user is None):
         db = sqlite3.connect('database.db')
-        db.execute(f'INSERT INTO users VALUES ("{email}", "user")')
+        hashed_password = hash_password(password)
+        db.execute(f'INSERT INTO users VALUES ("{email}", "user", "{hashed_password}")')
         db.commit()
         user = User(email, "user")
     else:
@@ -102,8 +107,6 @@ def login():
     
     flask_login.login_user(user)
     return flask.redirect(flask.url_for('index'))
-
-
 
 @app.route('/menu', methods=['GET'])
 @flask_login.login_required
@@ -117,6 +120,21 @@ def menu():
     
     menu = get_menu(type=type)
     return {"menu": menu, "type": type}
+
+@app.route('/menu', methods=['POST'])
+@flask_login.login_required
+@admin_required
+def menu_post():
+    menu_id = flask.request.form['menu_id']
+    new_title = flask.request.form['new_title']
+    new_description = flask.request.form['new_description']
+
+    ret = update_menu_item(menu_id, new_title, new_description)
+
+    if ret == True:
+        return {"message": "Meal successfully edited", menu_id: menu_id, new_title: new_title, new_description: new_description}, 200
+    else:
+        return {"message": f"Meal with ID {menu_id} does not exist", menu_id: menu_id}, 400
 
 @app.route('/queue')
 @flask_login.login_required
@@ -176,9 +194,6 @@ def delete_intent():
         return "Meal intent deleted!", 200
     else:
         return "Meal intent not found", 400
-
-#TODO: when the admin changes the menu, all meal intentions with 
-# the meal id of the meal that was removed should be deleted
 
 @app.route('/queue/<queue_name>', methods=['GET'])
 @flask_login.login_required
