@@ -7,6 +7,7 @@ from modules.User import User
 from modules.login_helpers import *
 from modules.database_helpers import *
 from modules.password_helpers import *
+from modules.statistics_helpers import *
 
 
 app = flask.Flask(__name__)
@@ -16,8 +17,6 @@ login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
 db = sqlite3.connect('database.db')
-
-print(hash_password("admin"))
 
 queues = {
     "queues": [
@@ -91,11 +90,11 @@ def login():
     password = flask.request.form['password']
 
     if check_login_ipc(email, password) == False:
-        return flask.render_template('login.html', error="Credenciais inválidas")
+        return flask.render_template('login.html', error="Invalid credentials")
 
     user = check_user(email, password)
     if user == -1:
-        return flask.render_template('login.html', error="Credenciais inválidas")
+        return flask.render_template('login.html', error="Invalid credentials")
     if(user is None):
         db = sqlite3.connect('database.db')
         hashed_password = hash_password(password)
@@ -113,7 +112,6 @@ def login():
 def menu():
     # get param type
     type = flask.request.args.get('type')
-    print(type)
     if type is None:
         menu = get_menu(type="Peixe")
         return flask.render_template('menu.html', type="Peixe", menu=menu, role=flask_login.current_user.urole)
@@ -153,11 +151,19 @@ def admin_manager():
 def menu_update():
     return flask.render_template('menuUpdate.html', role="admin")
 
-@app.route('/statistics')
+@app.route('/statistics', methods=['GET'])
 @flask_login.login_required
 @admin_required
 def statistics():
     return flask.render_template('statistics.html', role="admin")
+
+@app.route('/statistics/all', methods=['GET'])
+@flask_login.login_required
+@admin_required
+def get_statistics():
+    meal_types = generate_statistics_for_meal_types()
+    meal_periods = generate_statistics_for_meal_periods()
+    return { "meal_types": meal_types, "meal_periods": meal_periods }
 
 @app.route('/')
 @flask_login.login_required
@@ -177,7 +183,6 @@ def get_intents():
 @flask_login.login_required
 def intent():
     meal_id = flask.request.form['meal_id']
-    print(meal_id)
     ret = register_meal_intention(flask_login.current_user.id, meal_id)
     if ret == True:
         return "Meal intent saved!", 200
@@ -188,7 +193,6 @@ def intent():
 @flask_login.login_required
 def delete_intent():
     meal_id = flask.request.form['meal_id']
-    print(meal_id)
     ret = delete_meal_intention(flask_login.current_user.id, meal_id)
     if ret == True:
         return "Meal intent deleted!", 200

@@ -1,41 +1,55 @@
-google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(drawChart);
-function drawChart() {
-	var dataMealChoice = google.visualization.arrayToDataTable([
-		['Tipo', 'Nº de pessoas'],
-		['Carne', 150],
-		['Peixe', 30],
-		['Vegetariano', 5]
-	]);
-	var options = {
-		title: 'Tipos de Refeição escolhidas'
-	};
-	var chart = new google.visualization.PieChart(document.getElementById('tipos'));
-	chart.draw(dataMealChoice, options);
-}
+// on document ready
+$(document).ready(function () {
 
+    const mealTypes = document.getElementById("mealTypes")
+    const mealPeriods = document.getElementById("mealPeriods")
 
-google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(drawVisualization);
-function drawVisualization() {
-    // Some raw data (not necessarily accurate)
-    var data = google.visualization.arrayToDataTable([
-        ['Hora do Dia', 'Carne', 'Peixe/Vegetariano'],
-        ['12h00', 1, 1],
-        ['12h30', 3, 1],
-        ['13h00', 5, 2],
-        ['13h30', 10, 1],
-        ['14h00', 2, 1]
-    ]);
+    $.ajax({
+        url: '/statistics/all',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            var mealTypesData = data.meal_types
+            var mealPeriodsData = data.meal_periods
 
-    var options = {
-        title: 'Média de tempo na fila de espera por cada fila',
-        vAxis: { title: 'Minutos' },
-        hAxis: { title: 'Horas de Funcionamento' },
-        seriesType: 'bars',
-        series: { 2: { type: 'line' } }
-    };
+            new Chart(mealTypes, {
+                type: 'bar',
+                data: {
+                    labels: ['Peixe', 'Carne', 'Vegetariano'],
+                    datasets: [{
+                        label: 'Meal Types',
+                        data: [mealTypesData.Peixe, mealTypesData.Carne, mealTypesData.Vegetariano],
+                        backgroundColor: [ '#ffcf32', '#ff6c32' , '#32ff6c'],
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            })
 
-    var chart = new google.visualization.ComboChart(document.getElementById('queue'));
-    chart.draw(data, options);
-}
+            new Chart(mealPeriods, {
+                type: 'pie',
+                data: {
+                    labels: ['Almoço', 'Jantar'],
+                    datasets: [{
+                        label: 'Meal Periods',
+                        data: [mealPeriodsData["Almoço"], mealPeriodsData.Jantar],
+                        backgroundColor: [ 'rgb(157, 115, 255)', 'rgb(115, 180, 255)'],
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            })
+        }
+    })
+})
+
