@@ -48,31 +48,15 @@
             <option value="3">Vegetariano</option>
         </select>
         <div id="menu">
-            {% if (menu) %}
+        {% if (menu) %}
             <h class="mealTypeName">Almoço</h>
             <div class="menu-wrap" id="almoco">
-            {% for item in menu %}
-                {% if item[3] == "Almoço" %}
-                    <div id={{ item[0] }} class="menu-item">
-                        <h>{{ item[1] }}</h>
-                        <p>{{ item[2] }}</p>
-                    </div>
-                {% endif %}
-            {% endfor %}
             </div>
         {% endif %}
 
         {% if (menu) %}
             <h class="mealTypeName">Jantar</h>
             <div class="menu-wrap" id="jantar">
-            {% for item in menu %}
-                {% if item[3] == "Jantar" %}
-                <div id={{ item[0] }} class="menu-item">
-                    <h>{{ item[1] }}</h>
-                    <p>{{ item[2] }}</p>
-                </div>
-                {% endif %}
-            {% endfor %}
             </div>
         {% endif %}
         </div>

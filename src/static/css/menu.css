@@ -82,6 +82,19 @@
     padding-top: 20px;
 }
 
+.menu-item p1{
+    position: relative;
+    color: #8d8d8d;
+    top: 7px;
+    left: 10px;
+    width: calc(100% - 30px);
+    font-family: AdiNeueRegular;
+    font-size: 13px;
+    margin-bottom: 10px;
+    padding: 0;
+    line-break: auto;
+}
+
 .menu-item.selected{
     border: 2px solid #a7d319;
 }
