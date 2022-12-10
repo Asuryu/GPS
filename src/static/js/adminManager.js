@@ -3,6 +3,15 @@ $(document).ready(function () {
         var email = $("#searchInput").val(); // Get the email from the input
         if(email != "") get_user_role_by_email(email); // If the email is not empty, get the user by role
     });
+
+    // Detect enter press on search input
+    $("#searchInput").keypress(function (e) {
+        if (e.which == 13) {
+            var email = $("#searchInput").val(); // Get the email from the input
+            if(email != "") get_user_role_by_email(email); // If the email is not empty, get the user by role
+        }
+    });
+
 });
 
 
