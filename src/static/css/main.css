@@ -30,12 +30,20 @@ header .logo{
     transform: translate(0%, -50%);
     display: flex;
     flex-direction: line;
+    cursor: pointer;
+}
+header .logo img{
+    transition: 0.2s;
+}
+header .logo img:hover{
+    transition: 0.1s;
+    opacity: 0.6;
 }
 
 header .logo h{
     position: absolute;
     color: white;
-    width: 400px;
+    white-space: nowrap;
     top: 50%;
     left: 70px;
     transform: translate(0%, -50%);

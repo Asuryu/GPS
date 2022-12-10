@@ -12,6 +12,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="static/js/main.js"></script>
     <script src="static/js/menu.js"></script>
     <title>CMS - Weekly Menu</title>
 </head>
@@ -24,6 +25,11 @@
         <div class="links">
             <a href="/menu">Weekly Menu</a>
             <a href="/queue">Queue Info</a>
+
+            <script>
+                var role = "{{ role }}";
+            </script>
+
             {% if role == "admin" %}
             <a href="/admin_manager">Admin Manager</a>
             <a href="/statistics">Statistics</a>
@@ -46,7 +52,7 @@
             <div class="menu-wrap" id="almoco">
             {% for item in menu %}
                 {% if item[3] == "Almoço" %}
-                    <div id={{ item[0] }} class="menu-item" data-tippy-content="Click to change meal intent">
+                    <div id={{ item[0] }} class="menu-item">
                         <h>{{ item[1] }}</h>
                         <p>{{ item[2] }}</p>
                     </div>
@@ -59,7 +65,7 @@
             <div class="menu-wrap" id="jantar">
             {% for item in menu %}
                 {% if item[3] == "Jantar" %}
-                <div id={{ item[0] }} class="menu-item" data-tippy-content="Click to change meal intent">
+                <div id={{ item[0] }} class="menu-item">
                     <h>{{ item[1] }}</h>
                     <p>{{ item[2] }}</p>
                 </div>
