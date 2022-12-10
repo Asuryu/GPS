@@ -1,5 +1,6 @@
 import unittest
-from password_helpers import *
+from modules.password_helpers import *
+from modules.login_helpers import *
 
 class LoginTests(unittest.TestCase):
     def test_hash_password(self):
@@ -13,6 +14,12 @@ class LoginTests(unittest.TestCase):
         result = check_password(password_hash, password)
         self.assertTrue(result, True)
         
+    def test_check_user(self):
+        email = "asdadssada@isec.pt"
+        password = "admin"
+        result = check_user(email, password)
+        self.assertIsNone(result)
+
 
 if __name__ == '__main__':
     unittest.main()
