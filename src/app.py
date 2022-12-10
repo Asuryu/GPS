@@ -121,7 +121,7 @@ def menu():
     type = flask.request.args.get('type') # Get the type of the menu
     if type is None: # If the type is not specified, return the menu page with the first menu
         menu = get_menu(type="Peixe") # Get the menu
-        return flask.render_template('menu.html', type="Peixe", menu=menu, role=flask_login.current_user.urole) # Render the menu page
+        return flask.render_template('menu.html', type="Peixe", menu=menu, role=flask_login.current_user.urole, email=flask_login.current_user.id) # Render the menu page
     
     # If the type is specified, return the menu page with the specified menu
     menu = get_menu(type=type) # Get the menu
@@ -147,21 +147,21 @@ def menu_post():
 @app.route('/queue')
 @flask_login.login_required
 def queue():
-    return flask.render_template('queue.html', role=flask_login.current_user.urole) # Render the queue page
+    return flask.render_template('queue.html', role=flask_login.current_user.urole, email=flask_login.current_user.id) # Render the queue page
 
 # API route to handle the admin manager page
 @app.route('/admin_manager')
 @flask_login.login_required
 @admin_required
 def admin_manager():
-    return flask.render_template('adminManager.html', role="admin") # Render the admin manager page
+    return flask.render_template('adminManager.html', role="admin", email=flask_login.current_user.id) # Render the admin manager page
 
 # API route to handle the statistics page
 @app.route('/statistics', methods=['GET'])
 @flask_login.login_required
 @admin_required
 def statistics():
-    return flask.render_template('statistics.html', role="admin") # Render the statistics page
+    return flask.render_template('statistics.html', role="admin", email=flask_login.current_user.id) # Render the statistics page
 
 # API route to handle GET requests to fetch the statistics
 @app.route('/statistics/all', methods=['GET'])
@@ -176,7 +176,7 @@ def get_statistics():
 @app.route('/')
 @flask_login.login_required
 def index():
-    return flask.render_template('index.html', role=flask_login.current_user.urole) # Render the index page
+    return flask.render_template('index.html', role=flask_login.current_user.urole, email=flask_login.current_user.id) # Render the index page
 
 # API route to handle requests to fetch user intents
 @app.route('/intent', methods=['GET'])
