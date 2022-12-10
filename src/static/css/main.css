@@ -53,6 +53,20 @@ header .logo h{
     font-size: 17px;
 }
 
+header h.loggedInAs{
+    color: white;
+    font-family: AdiNeueRegular;
+    width: auto;
+    text-align: right;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    margin-right: 100px;
+}
+header h.loggedInAs p{
+    font-family: AdiNeueBold;
+}
+
 body{
     color: white;
     background-color: #141414;
