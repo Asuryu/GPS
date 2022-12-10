@@ -39,6 +39,18 @@ def register_meal_intention(email, meal_id):
 
     # If the user doesn't have an intention for the given meal, insert it into the intentions table
     cursor.execute("INSERT INTO INTENTIONS (user_id, menu_id) VALUES (?, ?)", (email, meal_id)) 
+    cursor.execute("SELECT * FROM MENU WHERE id = ?", (meal_id,))
+    inserted_meal = cursor.fetchone()
+
+    # Remove other intentions for the same weekday and different type
+    cursor.execute("SELECT * FROM INTENTIONS WHERE user_id = ?", (email,))
+    intention = cursor.fetchall()
+    for i in intention:
+        cursor.execute("SELECT * FROM MENU WHERE id = ?", (i[2],))
+        meal = cursor.fetchone()
+        if(meal[4] != inserted_meal[4] and meal[5] == inserted_meal[5]):
+            cursor.execute("DELETE FROM INTENTIONS WHERE user_id = ? AND menu_id = ?", (email, i[2]))
+
     db.commit()
     db.close()
     return True
