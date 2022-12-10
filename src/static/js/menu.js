@@ -95,8 +95,8 @@ $(document).ready(function () {
 
 function register_meal_intent(id){
     swal({
-        title: "Tem a certeza?",
-        text: "A sua intenção será registada",
+        title: "Are you sure?",
+        text: "Your meal intent will be registered",
         icon: "warning",
         buttons: true,
         dangerMode: true
@@ -111,6 +111,8 @@ function register_meal_intent(id){
                 success: function (data) {
                     swal("Meal intent registered", {
                         icon: "success",
+                        button: false,
+                        timer: 2000
                     });
                     $(".menu-item" + "#" + id).addClass("selected");
                 },
@@ -126,11 +128,11 @@ function register_meal_intent(id){
 
 function delete_meal_intent(id){
     swal({
-        title: "Tem a certeza?",
-        text: "A sua intenção será removida",
+        title: "Are you sure?",
+        text: "Your meal intent will be deleted",
         icon: "warning",
         buttons: true,
-        dangerMode: true
+        dangerMode: true,
     }).then((willDelete) => {
         if (willDelete) {
             $.ajax({
@@ -142,6 +144,8 @@ function delete_meal_intent(id){
                 success: function (data) {
                     swal("Meal intent deleted", {
                         icon: "success",
+                        button: false,
+                        timer: 2000
                     });
                     $(".menu-item" + "#" + id).removeClass("selected");
                 },
@@ -159,21 +163,21 @@ function edit_meal(id){
 
     //create swal with 2 parts
     swal({
-        title: "Editar refeição",
-        text: "Insira o nome da refeição",
+        title: "Edit meal details",
+        text: "Insert the new meal name",
         input: "text",
         content: {
             element: "input",
             attributes: {
-                placeholder: "Nome da refeição",
+                placeholder: "Meal name",
                 type: "text",
                 value: $(".menu-item" + "#" + id + " h").text(),
             },
         },
         buttons: {
-            cancel: "Cancelar",
+            cancel: "Cancel",
             confirm: {
-                text: "Confirmar",
+                text: "Next",
                 value: null,
                 visible: true,
                 closeModal: true,
@@ -186,28 +190,28 @@ function edit_meal(id){
         if(isBlank(value)){
             swal({
                 // error
-                title: "Erro",
-                text: "O nome não pode estar vazio",
+                title: "Error",
+                text: "The meal name cannot be empty",
                 icon: "error"
             })
         }
         if(!isBlank(value)){
             swal({
-                title: "Editar refeição",
-                text: "Insira a descrição da refeição",
+                title: "Edit meal details",
+                text: "Insert the new meal description",
                 input: "text",
                 content: {
                     element: "input",
                     attributes: {
-                        placeholder: "Descrição da refeição",
+                        placeholder: "Meal description",
                         type: "text",
                         value: $(".menu-item" + "#" + id + " p").text(),
                     },
                 },
                 buttons: {
-                    cancel: "Cancelar",
+                    cancel: "Cancel",
                     confirm: {
-                        text: "Confirmar",
+                        text: "Next",
                         value: null,
                         visible: true,
                         closeModal: true,
@@ -219,19 +223,19 @@ function edit_meal(id){
                 if(isBlank(value2)){
                     swal({
                         // error
-                        title: "Erro",
-                        text: "A descrição não pode estar vazia",
+                        title: "Error",
+                        text: "The meal description cannot be empty",
                         icon: "error"
                     })
                 }
                 if(!isBlank(value2)){
                     swal({
-                        title: "Tem a certeza?",
-                        text: "Os dados da refeição serão alterados",
+                        title: "Are you sure?",
+                        text: "The meal details will be changed",
                         content: {
                             element: "div",
                             attributes: {
-                                innerHTML: "<h3 style='color: #1F1F1F'>Título: " + value + "</h3><p style='color: #1F1F1F'>Descrição: " + value2 + "</p>"
+                                innerHTML: "<h3 style='color: #1F1F1F'>Title: " + value + "</h3><p style='color: #1F1F1F'>Description: " + value2 + "</p>"
                             }
                         },
                         icon: "warning",

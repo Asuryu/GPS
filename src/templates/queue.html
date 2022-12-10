@@ -32,32 +32,32 @@
         </button>
     </header>
     <div class="wrapper">
-        <h class="title"><i id="refreshBtn" class="fa-solid fa-arrows-rotate"></i>Estado das Filas</h>
+        <h class="title"><i id="refreshBtn" class="fa-solid fa-arrows-rotate"></i>Queue Status</h>
         <div id="carne" class="queue-box">
             <h class="queue-type">Carne</h>
             <p class="count">0</p>
             {% if role == "admin" %}
-                <button class="button-positive changeStateBtn">Alterar estado</button>
-                <button class="button-positive increaseBtn">Incrementar</button>
-                <button class="button-positive decreaseBtn">Decrementar</button>
+                <button class="button-positive changeStateBtn">Change queue state</button>
+                <button class="button-positive increaseBtn">Increase</button>
+                <button class="button-positive decreaseBtn">Decrease</button>
             {% endif %}
         </div>
         <div id="peixe" class="queue-box">
             <h class="queue-type">Peixe</h>
             <p class="count">0</p>
             {% if role == "admin" %}
-                <button class="button-positive changeStateBtn">Alterar estado</button>
-                <button class="button-positive increaseBtn">Incrementar</button>
-                <button class="button-positive decreaseBtn">Decrementar</button>
+                <button class="button-positive changeStateBtn">Change queue state</button>
+                <button class="button-positive increaseBtn">Increase</button>
+                <button class="button-positive decreaseBtn">Decrease</button>
             {% endif %}
         </div>
         <div id="vegetariano" class="queue-box cancelled">
             <h class="queue-type">Vegetariano</h>
             <p class="count">0</p>
             {% if role == "admin" %}
-                <button class="button-positive changeStateBtn">Alterar estado</button>
-                <button class="button-positive increaseBtn">Incrementar</button>
-                <button class="button-positive decreaseBtn">Decrementar</button>
+                <button class="button-positive changeStateBtn">Change queue state</button>
+                <button class="button-positive increaseBtn">Increase</button>
+                <button class="button-positive decreaseBtn">Decrease</button>
             {% endif %}
         </div>
     </div>
