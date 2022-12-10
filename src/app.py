@@ -170,7 +170,8 @@ def statistics():
 def get_statistics():
     meal_types = generate_statistics_for_meal_types() # Generate the statistics for the meal types
     meal_periods = generate_statistics_for_meal_periods() # Generate the statistics for the meal periods
-    return { "meal_types": meal_types, "meal_periods": meal_periods } # Return the statistics
+    meal_weekdays = generate_statistics_for_meal_weekdays() # Generate the statistics for the meal weekdays
+    return { "meal_types": meal_types, "meal_periods": meal_periods, "meal_weekdays": meal_weekdays } # Return the statistics
 
 # API route to handle the index page
 @app.route('/')

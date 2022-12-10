@@ -10,5 +10,9 @@ class StatisticTests(unittest.TestCase):
         result = generate_statistics_for_meal_periods()
         self.assertEqual(result, {'Almoço': 5, 'Jantar': 3})
 
+    def test_generate_statistics_for_meal_weekdays(self):
+        result = generate_statistics_for_meal_weekdays()
+        self.assertEqual(result, {'Segunda-Feira': 2, 'Terça-Feira': 2, 'Quarta-Feira': 1, 'Quinta-Feira': 2, 'Sexta-Feira': 1})
+
 if __name__ == '__main__':
     unittest.main()

@@ -1,10 +1,28 @@
+.wrapTitleStats{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapTitleStats .title{
+    position: relative;
+    top: -240px;
+}
+
 .wrap{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
@@ -13,14 +31,10 @@
     margin-top: 40px;
     margin-bottom: 40px;
     text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 .wrap div h{
     color: rgb(165, 165, 165);
-    margin-bottom: 15px;
-}
-
-.wrap h{
-    color: white;
-    text-align: center;
     margin-bottom: 15px;
 }
