@@ -39,6 +39,7 @@
     align-items: center;
     flex-direction: row;
     padding: 10px;
+    margin-top: 5px;
     margin-bottom: 20px;
 }
 
@@ -83,6 +84,16 @@
 
 .menu-item.selected{
     border: 2px solid #a7d319;
+}
+
+h.mealTypeName{
+    position: relative;
+    color: #f7ffdc;
+    font-family: AdiNeueBold;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px;
+    padding-top: 20px;
 }
 
 .box{
