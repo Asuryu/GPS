@@ -2,3 +2,4 @@ flask
 flask_login
 requests
 bs4
+bcrypt
