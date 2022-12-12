@@ -29,7 +29,7 @@ $(document).ready(function () {
         if (type == 1) type = "Peixe";
         else if (type == 2) type = "Carne";
         else if (type == 3) type = "Vegetariano";
-        change_meal_type(type);
+        change_meal_type(type, admin);
     });
 
     $(".menu-item").on("click", function () { // When user clicks on a meal
