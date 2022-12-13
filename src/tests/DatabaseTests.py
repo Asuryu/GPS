@@ -15,7 +15,6 @@ class DatabaseTests(unittest.TestCase):
         ]
         self.assertEqual(result, expectedResult)
         
-
     def test_get_user_intents(self):
         email = "admin@isec.pt"
         result = get_user_intents(email)
