@@ -52,6 +52,8 @@
     min-height: 140px;
     margin: 0px 5px 0px 5px;
     cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .menu-item:hover{
