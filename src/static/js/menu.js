@@ -118,33 +118,23 @@ function change_meal_type(type, admin){
 // If the request is successful, the UI will be updated
 // If the request fails, the user will be notified
 function register_meal_intent(id){
-    swal({
-        title: "Are you sure?",
-        text: "Your meal intent will be registered",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true
-    }).then((willDelete) => {
-        if (willDelete) {
-            $.ajax({ // Make POST request to the server to register the intent
-                url: "/intent",
-                type: "POST",
-                data: {
-                    meal_id: id
-                },
-                success: function (data) {
-                    swal("Meal intent registered", {
-                        icon: "success",
-                        button: false,
-                        timer: 2000
-                    });
-                    $(".menu-item" + "#" + id).addClass("selected");
-                },
-                error: function (data) {
-                    swal("An error has occurred while registering intent", {
-                        icon: "error",
-                    });
-                }
+    $.ajax({ // Make POST request to the server to register the intent
+        url: "/intent",
+        type: "POST",
+        data: {
+            meal_id: id
+        },
+        success: function (data) {
+            swal("Meal intent registered", {
+                icon: "success",
+                button: false,
+                timer: 2000
+            });
+            $(".menu-item" + "#" + id).addClass("selected");
+        },
+        error: function (data) {
+            swal("An error has occurred while registering intent", {
+                icon: "error",
             });
         }
     });
@@ -156,33 +146,23 @@ function register_meal_intent(id){
 // If the request is successful, the UI will be updated
 // If the request fails, the user will be notified
 function delete_meal_intent(id){
-    swal({
-        title: "Are you sure?",
-        text: "Your meal intent will be deleted",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    }).then((willDelete) => {
-        if (willDelete) {
-            $.ajax({ // Make DELETE request to the server to delete the intent
-                url: "/intent",
-                type: "DELETE",
-                data: {
-                    meal_id: id
-                },
-                success: function (data) {
-                    swal("Meal intent deleted", {
-                        icon: "success",
-                        button: false,
-                        timer: 2000
-                    });
-                    $(".menu-item" + "#" + id).removeClass("selected");
-                },
-                error: function (data) {
-                    swal("An error has occurred while deleting the intent", {
-                        icon: "error",
-                    });
-                }
+    $.ajax({ // Make DELETE request to the server to delete the intent
+        url: "/intent",
+        type: "DELETE",
+        data: {
+            meal_id: id
+        },
+        success: function (data) {
+            swal("Meal intent deleted", {
+                icon: "success",
+                button: false,
+                timer: 2000
+            });
+            $(".menu-item" + "#" + id).removeClass("selected");
+        },
+        error: function (data) {
+            swal("An error has occurred while deleting the intent", {
+                icon: "error",
             });
         }
     });
