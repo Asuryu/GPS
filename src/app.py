@@ -195,10 +195,10 @@ def get_intents():
 def intent():
     meal_id = flask.request.form['meal_id'] # Get the meal ID
     ret = register_meal_intention(flask_login.current_user.id, meal_id) # Register the meal intention
-    if ret == True: # If the meal intention was registered, return a success message
-        return "Meal intent saved!", 200
+    if ret == False: # If the meal intention was registered, return a success message
+        return {"message": "Meal intent already registered"}, 400
     else: # If the meal intention was not registered, return an error message
-        return "Meal intent already registered", 400
+        return {"message": "Meal intent saved!", "changed_intents": ret}, 200
 
 # API route to handle deletion of user intents
 @app.route('/intent', methods=['DELETE'])
