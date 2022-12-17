@@ -138,3 +138,58 @@ h.mealTypeName{
     background-color: rgb(115, 192, 52);
     color: white;
 }
+
+
+.menu-item-modal{
+    transition: 0.2s;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background-color: rgb(31, 31, 31);
+    border-radius: 8px;
+    width: 200px;
+    height: auto;
+    min-height: 140px;
+    max-height: 200px;
+    margin: 0px 5px 0px 5px;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.menu-item-modal:hover{
+    transition: 0.1s;
+    background-color: rgb(75, 75, 75);
+}
+.menu-item-modal .weekday{
+    position: relative;
+    color: #8d8d8d;
+    top: 7px;
+    left: 10px;
+    width: calc(100% - 30px);
+    font-family: AdiNeueRegular;
+    font-size: 13px;
+    margin-bottom: 10px;
+    padding: 0;
+    line-break: auto;
+}
+.menu-item-modal .meal_name{
+    position: relative;
+    color: #a7d319;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 30px);
+    font-family: AdiNeueBold;
+    font-size: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    line-break: auto;
+}
+.menu-item-modal .meal_description{
+    position: relative;
+    color: #fff;
+    font-family: AdiNeueRegular;
+    font-size: 16px;
+    margin: 0;
+    padding: 10px;
+    padding-top: 20px;
+}

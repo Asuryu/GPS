@@ -1,5 +1,7 @@
 const WEEKDAY = ["Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira"];
 
+var changed_intents = []
+
 $(document).ready(function () {
 
     // Check if the user is an admin
@@ -125,18 +127,47 @@ function register_meal_intent(id){
             meal_id: id
         },
         success: function (data) {
-            swal("Meal intent registered", {
-                icon: "success",
-                button: false,
-                timer: 2000
-            });
+            if(data.changed_intents.length > 0){
+                // add to changed intents array
+                changed_intents = [];
+                for(var i = 0; i < data.changed_intents.length; i++) changed_intents.push(data.changed_intents[i]);
+                Swal.fire({
+                    title: "Meal intent registered",
+                    text: data.changed_intents.length + " intent(s) changed",
+                    icon: "success",
+                    confirmButtonText: "Ok",
+                    // another swal button to see changed intents
+                    footer: '<a href="#" onclick="show_changed_intents()">See changed intents</a>'
+                });
+            } else {
+                Swal.fire({
+                    title: "Meal intent registered",
+                    icon: "success",
+                    confirmButtonText: "Ok",
+                    button: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                });
+            }
             $(".menu-item" + "#" + id).addClass("selected");
         },
         error: function (data) {
-            swal("An error has occurred while registering intent", {
+            Swal.fire({
+                title: "An error has occurred while registering intent",
                 icon: "error",
+                confirmButtonText: "Ok"
             });
         }
+    });
+}
+
+function show_changed_intents(){
+    var intents = changed_intents[0];
+    Swal.fire({
+        title: "Changed intents",
+        html: "<h>The following intents were removed:</h><br><br><div class='menu-item-modal' style='text-align: left;'><p1 class='weekday'>" + WEEKDAY[parseInt(intents[5]) - 1] + "</p1><br><h class='meal_name'>" + intents[1] + "</h><p class='meal_description'>" + intents[2] + "</p></div>",
+        icon: "info",
+        confirmButtonText: "Ok"
     });
 }
 
@@ -153,16 +184,21 @@ function delete_meal_intent(id){
             meal_id: id
         },
         success: function (data) {
-            swal("Meal intent deleted", {
+            Swal.fire({
+                title: "Meal intent deleted",
                 icon: "success",
+                confirmButtonText: "Ok",
                 button: false,
-                timer: 2000
-            });
+                timer: 2000,
+                timerProgressBar: true,
+            })
             $(".menu-item" + "#" + id).removeClass("selected");
         },
         error: function (data) {
-            swal("An error has occurred while deleting the intent", {
+            Swal.fire({
+                title: "An error has occurred while deleting intent",
                 icon: "error",
+                confirmButtonText: "Ok"
             });
         }
     });
@@ -174,115 +210,94 @@ function delete_meal_intent(id){
 // If the request is successful, the UI will be updated
 // If the request fails, the user will be notified
 function edit_meal(id){
-    swal({ // First modal to insert the new meal name
-        title: "Edit meal details",
+
+    Swal.fire({
+        title:  "Edit meal details",
         text: "Insert the new meal name",
+        // input with the current meal name
         input: "text",
-        content: {
-            element: "input",
-            attributes: {
-                placeholder: "Meal name",
-                type: "text",
-                value: $(".menu-item" + "#" + id + " h").text(),
-            },
-        },
-        buttons: {
-            cancel: "Cancel",
-            confirm: {
-                text: "Next",
-                value: null,
-                visible: true,
-                closeModal: true,
+        inputValue: $(".menu-item" + "#" + id + " h").text(),
+        showCancelButton: true,
+        confirmButtonText: "Next",
+        cancelButtonText: "Cancel",
+        showLoaderOnConfirm: true,
+        preConfirm: (name) => {
+            if(isBlank(name)){
+                Swal.showValidationMessage("Please insert a meal name");
             }
         }
-    }).then((value) => {
-        if(value == "") value = $(".menu-item" + "#" + id + " h").text(); // If the user clicks on next without inserting a value, use the old value
-        if(value == null) return; // If the user clicks on cancel, return
-        if(isBlank(value)){ // If the user inserts a blank value, notify the user
-            swal({
-                // error
-                title: "Error",
-                text: "The meal name cannot be empty",
-                icon: "error"
-            })
-        }
-        if(!isBlank(value)){ // If the user inserts a valid value, ask for the new meal description
-            swal({ // Second modal to insert the new meal description
-                title: "Edit meal details",
+    }).then((result) => {
+        if(result.isConfirmed){
+            Swal.fire({
+                title:  "Edit meal details",
                 text: "Insert the new meal description",
+                // input with the current meal description
                 input: "text",
-                content: {
-                    element: "input",
-                    attributes: {
-                        placeholder: "Meal description",
-                        type: "text",
-                        value: $(".menu-item" + "#" + id + " p").text(),
-                    },
-                },
-                buttons: {
-                    cancel: "Cancel",
-                    confirm: {
-                        text: "Next",
-                        value: null,
-                        visible: true,
-                        closeModal: true,
+                inputValue: $(".menu-item" + "#" + id + " p").text(),
+                showCancelButton: true,
+                confirmButtonText: "Next",
+                cancelButtonText: "Cancel",
+                showLoaderOnConfirm: true,
+                preConfirm: (description) => {
+                    if(isBlank(description)){
+                        Swal.showValidationMessage("Please insert a meal description");
                     }
                 }
-            }).then((value2) => {
-                if(value2 == "") value2 = $(".menu-item" + "#" + id + " p").text(); // If the user clicks on next without inserting a value, use the old value
-                if(value2 == null) return; // If the user clicks on cancel, return
-                if(isBlank(value2)){ // If the user inserts a blank value, notify the user
-                    swal({
-                        // error
-                        title: "Error",
-                        text: "The meal description cannot be empty",
-                        icon: "error"
-                    })
-                }
-                if(!isBlank(value2)){ // If the user inserts a valid value, ask for confirmation
-                    swal({
-                        title: "Are you sure?",
-                        text: "The meal details will be changed",
-                        content: {
-                            element: "div",
-                            attributes: {
-                                innerHTML: "<h3 style='color: #1F1F1F'>Title: " + value + "</h3><p style='color: #1F1F1F'>Description: " + value2 + "</p>"
-                            }
-                        },
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                        closeModal: false
-                    }).then((willEdit) => {
-                        if (willEdit) { // If the user confirms, make a POST request to the server to edit the meal
-                            $.ajax({
+            }).then((result1) => {
+                if(result1.isConfirmed){
+                    Swal.fire({
+                        // confirm modal with information about the meal
+                        title: "Confirm meal details",
+                        text: "The meal details will be changed to:",
+                        html: "<h3>" + result.value + "</h3><p>" + result1.value + "</p>",
+                        showCancelButton: true,
+                        confirmButtonText: "Confirm",
+                        cancelButtonText: "Cancel",
+                        showLoaderOnConfirm: true,
+                        preConfirm: () => {
+                            // 1s delay before the request is sent
+                            return new Promise((resolve) => {
+                                setTimeout(() => {
+                                    resolve()
+                                }, 600)
+                            })
+                        }
+                    }).then((result2) => {
+                        if(result2.isConfirmed){
+                            $.ajax({ // Make PUT request to the server to edit the meal
                                 url: "/menu",
                                 type: "POST",
                                 data: {
                                     menu_id: id,
-                                    new_title: value,
-                                    new_description: value2
+                                    new_title: result.value,
+                                    new_description: result1.value
                                 },
                                 success: function (data) {
-                                    swal("Meal edited", {
+                                    Swal.fire({
+                                        title: "Meal edited",
                                         icon: "success",
+                                        confirmButtonText: "Ok",
                                         button: false,
-                                        timer: 2000
-                                    });
-                                    $(".menu-item" + "#" + id + " h").text(value);
-                                    $(".menu-item" + "#" + id + " p").text(value2);
+                                        timer: 2000,
+                                        timerProgressBar: true,
+                                    })
+                                    // Update the UI
+                                    $(".menu-item" + "#" + id + " h").text(result.value);
+                                    $(".menu-item" + "#" + id + " p").text(result1.value);
                                     get_user_intents();
                                 },
                                 error: function (data) {
-                                    swal("An error has occurred while editing the menu", {
+                                    Swal.fire({
+                                        title: "An error has occurred while editing the meal",
                                         icon: "error",
+                                        confirmButtonText: "Ok"
                                     });
                                 }
                             });
                         }
                     })
                 }
-            });
+            })
         }
     })
 }
