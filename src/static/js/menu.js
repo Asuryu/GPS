@@ -1,4 +1,4 @@
-const WEEKDAY = ["Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira"];
+const WEEKDAY = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday"];
 
 var changed_intents = []
 

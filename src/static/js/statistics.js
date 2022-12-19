@@ -18,7 +18,7 @@ $(document).ready(function () {
             new Chart(mealTypes, {
                 type: 'bar',
                 data: {
-                    labels: ['Peixe', 'Carne', 'Vegetariano'],
+                    labels: ['Fish', 'Meat', 'Vegetarian'],
                     datasets: [{
                         label: '',
                         data: [mealTypesData.Peixe, mealTypesData.Carne, mealTypesData.Vegetariano],
@@ -42,7 +42,7 @@ $(document).ready(function () {
             new Chart(mealPeriods, {
                 type: 'pie',
                 data: {
-                    labels: ['Almoço', 'Jantar'],
+                    labels: ['Lunch', 'Dinner'],
                     datasets: [{
                         label: 'Meal Periods',
                         data: [mealPeriodsData["Almoço"], mealPeriodsData.Jantar],
@@ -61,7 +61,7 @@ $(document).ready(function () {
             new Chart(mealWeekdays, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira'],
+                    labels: ['Monday', 'Tuesday', 'Wednesady', 'Thursday', 'Friday'],
                     datasets: [{
                         label: 'Meal Periods',
                         data: [mealWeekdaysData["Segunda-Feira"], mealWeekdaysData["Terça-Feira"], mealWeekdaysData["Quarta-Feira"], mealWeekdaysData["Quinta-Feira"], mealWeekdaysData["Sexta-Feira"]],

@@ -75,3 +75,26 @@
     color: #FFFFFF;
     padding: 10px;
 }
+
+.box{
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    top: 290px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.box div{
+    position: relative;
+    width: 25px;
+    height: 2px;
+    border-radius: 4px;
+    border: 2px solid #a7d319;
+    margin-right: 10px;
+}
+.red_legend{
+    border: 2px solid #a02020;
+}
