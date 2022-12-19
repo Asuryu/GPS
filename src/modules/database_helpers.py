@@ -41,6 +41,7 @@ def register_meal_intention(email, meal_id):
     cursor.execute("INSERT INTO INTENTIONS (user_id, menu_id) VALUES (?, ?)", (email, meal_id)) 
     cursor.execute("SELECT * FROM MENU WHERE id = ?", (meal_id,))
     inserted_meal = cursor.fetchone()
+    print(inserted_meal[3])
 
     # Remove other intentions for the same weekday and different type
     cursor.execute("SELECT * FROM INTENTIONS WHERE user_id = ?", (email,))
@@ -49,7 +50,7 @@ def register_meal_intention(email, meal_id):
     for i in intention:
         cursor.execute("SELECT * FROM MENU WHERE id = ?", (i[2],))
         meal = cursor.fetchone()
-        if(meal[4] != inserted_meal[4] and meal[5] == inserted_meal[5]):
+        if(meal[4] != inserted_meal[4] and meal[5] == inserted_meal[5]) and inserted_meal[3] == meal[3]:
             cursor.execute("DELETE FROM INTENTIONS WHERE user_id = ? AND menu_id = ?", (email, i[2]))
             changed_intents.append(meal)
 
