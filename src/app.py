@@ -235,12 +235,18 @@ def queue_name(queue_name):
 def queue_name_post(queue_name):
     # Depending on the queue name, increment the queue counter
     if(queue_name == "peixe"):
+        if queues["queues"][0]["enabled"] == False:
+            return "Queue not enabled", 400
         queues["queues"][0]["counter"] += 1
         return queues["queues"][0], 200
     elif(queue_name == "carne"):
+        if queues["queues"][1]["enabled"] == False:
+            return "Queue not enabled", 400
         queues["queues"][1]["counter"] += 1
         return queues["queues"][1], 200
     elif(queue_name == "vegetariano"):
+        if queues["queues"][2]["enabled"] == False:
+            return "Queue not enabled", 400
         queues["queues"][2]["counter"] += 1
         return queues["queues"][2], 200
     else:
@@ -280,12 +286,15 @@ def queue_name_patch(queue_name):
     # Depending on the queue name, enable/disable the queue
     if(queue_name == "peixe"):
         queues["queues"][0]["enabled"] = not queues["queues"][0]["enabled"]
+        queues["queues"][0]["counter"] = 0
         return queues["queues"][0], 200
     elif(queue_name == "carne"):
         queues["queues"][1]["enabled"] = not queues["queues"][1]["enabled"]
+        queues["queues"][1]["counter"] = 0
         return queues["queues"][1], 200
     elif(queue_name == "vegetariano"):
         queues["queues"][2]["enabled"] = not queues["queues"][2]["enabled"]
+        queues["queues"][2]["counter"] = 0
         return queues["queues"][2], 200
     else:
         return "Queue not found", 404
