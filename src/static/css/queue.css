@@ -54,6 +54,13 @@
     color: white;
     margin-bottom: 10px;
 }
+.queue-box .wait_time{
+    font-size: 16px;
+    text-align: center;
+    font-family: AdiNeueRegular;
+    color: rgb(159, 159, 159);
+    margin-bottom: 10px;
+}
 .queue-box.cancelled{
     border: 3px solid #a02020;
 }
@@ -81,7 +88,7 @@
     width: 100%;
     left: 50%;
     transform: translate(-50%, 0%);
-    top: 290px;
+    top: 320px;
     display: flex;
     flex-direction: row;
     justify-content: center;

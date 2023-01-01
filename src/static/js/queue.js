@@ -61,6 +61,7 @@ function updateQueueCounters(){
                 var queue = data.queues[i];
                 $('#' + queue.name.toLowerCase() + " .count").text(queue.counter); // Update the counter
                 $('#' + queue.name.toLowerCase() + " .queue-type").text(queue.name); // Update the queue type
+                updateWaitTime( queue.name.toLowerCase(), queue.wait_time);
                 if(queue.enabled){ // Update the state of the queue
                     $('#' + queue.name.toLowerCase()).removeClass("cancelled");
                 } else {
@@ -69,4 +70,10 @@ function updateQueueCounters(){
             }
         }
     });
+}
+
+function updateWaitTime(queue_name, wait_time){
+    setTimeout(function(){
+        $('#' + queue_name + " .wait_time").text("ETA: " + wait_time);
+    }, 1000);
 }

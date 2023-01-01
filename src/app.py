@@ -1,6 +1,8 @@
 import flask
 import flask_login
 import sqlite3
+import datetime
+import random
 from functools import wraps
 from modules.User import User
 from modules.login_helpers import *
@@ -22,16 +24,19 @@ queues = {
         {
             "name": "Peixe",
             "counter": 0,
+            "wait_time": 0,
             "enabled": True
         },
         {
             "name": "Carne",
             "counter": 0,
+            "wait_time": 0,
             "enabled": True
         },
         {
             "name": "Vegetariano",
             "counter": 0,
+            "wait_time": 0,
             "enabled": True
         }
     ]
@@ -215,14 +220,34 @@ def delete_intent():
 @app.route('/queue/<queue_name>', methods=['GET'])
 @flask_login.login_required
 def queue_name(queue_name):
+    random_number = random.randint(31, 33)
     # Depending on the queue name, return the queue information
     if(queue_name == "peixe"):
+        wait_time = random_number * queues["queues"][0]["counter"]
+        # generate string with the wait time (12m02s) with padding
+        wait_time = str(wait_time // 60).zfill(2) + "m" + str(wait_time % 60).zfill(2) + "s"
+        queues["queues"][0]["wait_time"] = wait_time
         return queues["queues"][0], 200
     elif(queue_name == "carne"):
+        wait_time = random_number * queues["queues"][1]["counter"]
+        wait_time = str(wait_time // 60).zfill(2) + "m" + str(wait_time % 60).zfill(2) + "s"
+        queues["queues"][1]["wait_time"] = wait_time
         return queues["queues"][1], 200
     elif(queue_name == "vegetariano"):
+        wait_time = random_number * queues["queues"][2]["counter"]
+        wait_time = str(wait_time // 60).zfill(2) + "m" + str(wait_time % 60).zfill(2) + "s"
+        queues["queues"][2]["wait_time"] = wait_time
         return queues["queues"][2], 200
     elif(queue_name == "all"):
+        wait_time = random_number * queues["queues"][0]["counter"]
+        wait_time = str(wait_time // 60).zfill(2) + "m" + str(wait_time % 60).zfill(2) + "s"
+        queues["queues"][0]["wait_time"] = wait_time
+        wait_time = random_number * queues["queues"][1]["counter"]
+        wait_time = str(wait_time // 60).zfill(2) + "m" + str(wait_time % 60).zfill(2) + "s"
+        queues["queues"][1]["wait_time"] = wait_time
+        wait_time = random_number * queues["queues"][2]["counter"]
+        wait_time = str(wait_time // 60).zfill(2) + "m" + str(wait_time % 60).zfill(2) + "s"
+        queues["queues"][2]["wait_time"] = wait_time
         return queues, 200
 
     else:
